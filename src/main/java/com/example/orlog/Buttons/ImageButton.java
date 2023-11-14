@@ -14,7 +14,16 @@ public class ImageButton extends Rec{
         String absPath = "C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/";
         this.fg = new ImageView(new Image(absPath +path +foreground+".png"));
         this.bg = new ImageView(new Image(absPath +path +background+".png"));
-        for (ImageView v: new ImageView[]{fg, bg}){
+        set(new ImageView[]{fg,bg},x,y,sx,sy);
+    }
+    public ImageButton(String path, String background, int x, int y,int sx, int sy){
+        String absPath = "C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/";
+        this.bg = new ImageView(new Image(absPath +path +background+".png"));
+        this.fg = null;
+        set(new ImageView[]{bg},x,y,sx,sy);
+    }
+    private void set(ImageView[] imgs, int x, int y, int sx, int sy){
+        for (ImageView v: imgs){
             v.setX(x);
             v.setY(y);
             v.setFitWidth(sx);
@@ -23,7 +32,7 @@ public class ImageButton extends Rec{
     }
     public void load(List<Node> group){
         group.add(bg);
-        group.add(fg);
+        if (fg !=null) {group.add(fg);}
     }
     public Node getNode(){return bg;}
 }

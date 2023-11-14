@@ -46,7 +46,7 @@ public class MenuController {
       MinButton sMin = new MinButton(settings,root,"Symb_settings",x-135,10);
       MinButton retu = new MinButton(mainMenu,root,"Symb_return",x-135,y-135);
 
-      ImageButton logo = new ImageButton("","NewLogo","Newlogo",(x-256)/2,40,256,171);
+      ImageButton logo = new ImageButton("","Newlogo",(x-256)/2,40,256,171);
 
       mainMenu.setItems(new Rec[]{
               new LTButton(p2Select,root,"play",(x-450)/2,y-405),
@@ -74,24 +74,25 @@ public class MenuController {
       aISelect.setItems(new Rec[]{home,sMin,retu,logo});
       settings.setItems(new Rec[]{home,sMin,retu,logo});
 
-      TextInfo diceInfo = new TextInfo("Select an option!",145,199,x-290,500,24);
+      TextInfo diceInfo = new TextInfo("Select an option!",135,425+64,x-270,150,36);
       diceRules.setItems(new Rec[]{
-              new DiceInfo("Gold_Front","A Gold Border - grants 1 FAVOR",diceInfo,138,128),
-              new DiceInfo("Frigg_Front","Frigg_Back","A Prophecy Border - Heals 1 health",diceInfo,138,128+74),
-              new DiceInfo("Vidar_Front","Vidar_Back","A Vengeance Border - deals 1 Damage to your opponent!",diceInfo,138,128+148),
-              new DiceInfo("Loki_Front","Loki_Back","A Mischief Border - destroys 1 of your opponents FAVOR",diceInfo,138,128+148+74),
+              new DiceInfo("Gold_Front","A Gold Border - grants 1 FAVOR",diceInfo,135,54),
 
-              new DiceInfo("Basic_Back","A Basic Dice - two sides have a GOLD BORDER",diceInfo,64,128),
-              new DiceInfo("Frigg_Back","A Frigg Dice - two sides have a GOLD BORDER, and two more have a PROPHECY BORDER - those sides give 1 Health",diceInfo,64,128+74),
-              new DiceInfo("Vidar_Back","A Vidar Dice - two sides have a GOLD BORDER, and two more have a VENGEANCE BORDER - those sides deal 1 Damage to your opponent!",diceInfo,64,128+148),
-              new DiceInfo("Loki_Back","A Loki Dice - two sides have a GOLD BORDER, and two more have a MISCHIEF BORDER - those sides destroy your opponents FAVOR ",diceInfo,64,128+148+74),
-              new DiceInfo("Odin_Back","An Odin Dice - every side has a GOLD BORDER!",diceInfo,64,128+148+148),
+              new DiceInfo("Frigg_Front","Frigg_Back","A Prophecy Border - Heals 1 health",diceInfo,135,160),
+              new DiceInfo("Vidar_Front","Vidar_Back","A Vengeance Border - deals 1 Damage to your opponent!",diceInfo,135,266),
+              new DiceInfo("Loki_Front","Loki_Back","A Mischief Border - destroys 1 of your opponents FAVOR",diceInfo,135,372),
 
-              new DiceInfo("Axe","Axe - deals 1 damage to your opponent. Blocked by WARRIOR",diceInfo,64,54),
-              new DiceInfo("Bow","Bow - deals 1 damage to your opponent. Blocked by SHIELD",diceInfo,64+74,54),
-              new DiceInfo("Warrior","Warrior - Blocks 1 AXE",diceInfo,64+148,54),
-              new DiceInfo("Shield","Shield - Blocks 1 BOW",diceInfo,64+148 +74,54),
-              new DiceInfo("Thief","Thief - Steals 1 FAVOR from your opponent!",diceInfo,64+148+148,54),
+              new DiceInfo("Basic_Back","A Basic Dice - two sides have a GOLD BORDER",diceInfo,29,54),
+              new DiceInfo("Frigg_Back","A Frigg Dice - two sides have a GOLD BORDER, and two more have a PROPHECY BORDER - those sides give 1 Health",diceInfo,29,160),
+              new DiceInfo("Vidar_Back","A Vidar Dice - two sides have a GOLD BORDER, and two more have a VENGEANCE BORDER - those sides deal 1 Damage to your opponent!",diceInfo,29,266),
+              new DiceInfo("Loki_Back","A Loki Dice - two sides have a GOLD BORDER, and two more have a MISCHIEF BORDER - those sides destroy your opponents FAVOR ",diceInfo,29,372),
+              new DiceInfo("Odin_Back","An Odin Dice - every side has a GOLD BORDER!",diceInfo,29,478),
+
+              new DiceInfo("Axe","Axe - deals 1 damage to your opponent. Blocked by WARRIOR",diceInfo,241,54),
+              new DiceInfo("Bow","Bow - deals 1 damage to your opponent. Blocked by SHIELD",diceInfo,347,54),
+              new DiceInfo("Warrior","Warrior - Blocks 1 AXE",diceInfo,453,54),
+              new DiceInfo("Shield","Shield - Blocks 1 BOW",diceInfo,559,54),
+              new DiceInfo("Thief","Thief - Steals 1 FAVOR from your opponent!",diceInfo,665,54),
 
               diceInfo, home,sMin,retu});
 

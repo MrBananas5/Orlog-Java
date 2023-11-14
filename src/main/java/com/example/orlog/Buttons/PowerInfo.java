@@ -16,7 +16,7 @@ import java.util.List;
 public class PowerInfo extends InfoButton {
     private Label label;
     public PowerInfo(String name, String blessing, int cost,String desc, TextInfo tx, int x, int y) {
-        super("Buttons/Statues/", name, name, name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc, tx, x, y, 64, 128);
+        super("Buttons/Statues/", name, name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc, tx, x, y, 64, 128);
         label = new Label(name);
         label.setFont(Font.loadFont("file:C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/norse.bold.otf", 56));
         label.setTextFill(Color.web("#000000"));
@@ -24,7 +24,6 @@ public class PowerInfo extends InfoButton {
         label.setLayoutY(y+32);
         label.setLayoutX(x+64);
         label.setOnMousePressed(new EventHandler<MouseEvent>() {
-
             public void handle(MouseEvent mouseEvent) {
                 onClick(tx,name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc);
             }
@@ -32,7 +31,6 @@ public class PowerInfo extends InfoButton {
     }
     public void load(List<Node> group){
         group.add(bg);
-        group.add(fg);
         group.add(label);
     }
 }
