@@ -19,7 +19,6 @@ public class Menu {
     public void setItems(Rec[] items){
         this.items.clear();
         this.items.addAll(Arrays.asList(items));
-
     }
     public void set(Group group){
         group.getChildren().clear();
