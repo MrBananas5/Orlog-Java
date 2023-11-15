@@ -1,18 +1,16 @@
 package com.example.orlog.Menu;
 
 import com.example.orlog.Buttons.*;
-import com.example.orlog.Menu.Menu;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 
 public class MenuController {
    public MenuController(Stage stage){

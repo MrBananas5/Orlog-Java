@@ -1,15 +1,9 @@
 package com.example.orlog.Buttons;
 
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -25,17 +19,9 @@ public class PowerInfo extends InfoButton {
         label.setPrefSize(200,64);
         label.setLayoutY(y+16);
         label.setLayoutX(x+69);
-        label.setOnMousePressed(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent mouseEvent) {
-                onClick(tx,name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc);
-            }
-        });
+        label.setOnMousePressed(mouseEvent -> onClick(tx,name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc));
         fg = new ImageView(new Image(absPath+"Midgard/"+name+".png"));
-        fg.setOnMousePressed(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent mouseEvent) {
-                onClick(tx,name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc);
-            }
-        });
+        fg.setOnMousePressed(mouseEvent -> onClick(tx,name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc));
         fg.setLayoutY(y+59);
         fg.setLayoutX(x+5);
         fg.setX(64);

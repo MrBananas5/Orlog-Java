@@ -1,8 +1,6 @@
 package com.example.orlog.Buttons;
 
 
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 
 public class DiceInfo extends InfoButton {
     public DiceInfo(String name, String text, TextInfo tx, int x, int y) {

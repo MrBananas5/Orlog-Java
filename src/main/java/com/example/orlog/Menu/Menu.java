@@ -1,16 +1,15 @@
 package com.example.orlog.Menu;
 import com.example.orlog.Buttons.Rec;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Menu {
-    private ArrayList<Rec> items;
+    private final ArrayList<Rec> items;
     public Menu(){
         items = new ArrayList<>();
     }
-    public void remove(Node n){
+    public void remove(Rec n){
         items.remove(n);
     }
     public void add(Rec n){
