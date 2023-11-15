@@ -20,6 +20,7 @@ public class PowerInfo extends InfoButton {
         label.setLayoutY(y+16);
         label.setLayoutX(x+69);
         label.setOnMousePressed(mouseEvent -> onClick(tx,name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc));
+
         fg = new ImageView(new Image(absPath+"Midgard/"+name+".png"));
         fg.setOnMousePressed(mouseEvent -> onClick(tx,name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc));
         fg.setLayoutY(y+59);
