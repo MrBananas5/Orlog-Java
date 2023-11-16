@@ -39,6 +39,7 @@ public class MenuController {
       Menu aISelect = new Menu();
       Menu hostMenu = new Menu();
       Menu joinMenu = new Menu();
+      Menu realmSelect = new Menu();
 
       MinButton home = new MinButton(mainMenu,root,"Symb_home",10,y-135);
       MinButton sMin = new MinButton(settings,root,"Symb_settings",x-135,10);
@@ -46,6 +47,8 @@ public class MenuController {
 
       ImageButton logo = new ImageButton("","Newlogo",(x-256)/2,40,256,171);
 
+      HTButton midSelect = new HTButton(envSelect,root,"Midgard",128,90);
+      HTButton reaSelect = new HTButton(envSelect,root,"Yggdrasil",x-403,90);
       mainMenu.setItems(new Rec[]{
               new LTButton(p2Select,root,"play",(x-450)/2,y-405),
               new LTButton(rulesMain,root,"rules",(x-450)/2,y-270),
@@ -64,11 +67,13 @@ public class MenuController {
       p2Select.setItems(new Rec[]{
               new LTButton(aISelect, root,"Computer",(x-450)/2,y-270),
               new LTButton(envSelect, root,"Local",(x-450)/2,y-405),
-              new MenuButton(hostMenu,root,"Buttons/","Host","HT_Back",(x-1350/2),y-135,225,125),
-              new MenuButton(hostMenu,root,"Buttons/","Join","HT_Back",(x-900/2),y-135,225,125),
+              new HTButton(hostMenu,root,"Host",(x-1350/2),y-135),
+              new HTButton(joinMenu,root,"Join",(x-900/2),y-135),
               home,sMin,retu,logo});
 
-      envSelect.setItems(new Rec[]{sMin,retu});
+      envSelect.setItems(new Rec[]{reaSelect,midSelect,sMin,retu});
+      realmSelect.setItems(new Rec[]{reaSelect,midSelect,sMin,retu});
+
       aISelect.setItems(new Rec[]{home,sMin,retu,logo});
       settings.setItems(new Rec[]{home,sMin,retu,logo});
 
