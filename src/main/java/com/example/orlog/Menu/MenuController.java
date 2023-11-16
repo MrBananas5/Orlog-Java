@@ -2,6 +2,7 @@ package com.example.orlog.Menu;
 
 import com.example.orlog.Buttons.*;
 
+import com.example.orlog.Realms.*;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
@@ -40,6 +41,7 @@ public class MenuController {
       Menu hostMenu = new Menu();
       Menu joinMenu = new Menu();
       Menu realmSelect = new Menu();
+      PowerMenu powerMenu = new PowerMenu();
 
       MinButton home = new MinButton(mainMenu,root,"Symb_home",10,y-135);
       MinButton sMin = new MinButton(settings,root,"Symb_settings",x-135,10);
@@ -48,7 +50,7 @@ public class MenuController {
       ImageButton logo = new ImageButton("","Newlogo",(x-256)/2,40,256,171);
 
       HTButton midSelect = new HTButton(envSelect,root,"Midgard",128,90);
-      HTButton reaSelect = new HTButton(envSelect,root,"Yggdrasil",x-403,90);
+      HTButton reaSelect = new HTButton(realmSelect,root,"Yggdrasil",x-403,90);
       mainMenu.setItems(new Rec[]{
               new LTButton(p2Select,root,"play",(x-450)/2,y-405),
               new LTButton(rulesMain,root,"rules",(x-450)/2,y-270),
@@ -71,8 +73,29 @@ public class MenuController {
               new HTButton(joinMenu,root,"Join",(x-900/2),y-135),
               home,sMin,retu,logo});
 
-      envSelect.setItems(new Rec[]{reaSelect,midSelect,sMin,retu});
-      realmSelect.setItems(new Rec[]{reaSelect,midSelect,sMin,retu});
+      envSelect.setItems(new Rec[]{
+              new MidgardPicker(powerMenu,root,"Anslo",2,(x-200)/2,275),
+              new MidgardPicker(powerMenu,root,"Nidaros",1,(x-600)/2+20,275),
+              new MidgardPicker(powerMenu,root,"Jomsborg",3,(x+200)/2-20,275),
+
+              new MidgardPicker(powerMenu,root,"Jorvik",2,(x-200)/2,450),
+              new MidgardPicker(powerMenu,root,"Grœnland",1,(x-600)/2+20,450),
+              new MidgardPicker(powerMenu,root,"Vinland",3,(x+200)/2-20,450),
+
+              reaSelect,midSelect,sMin,retu});
+      realmSelect.setItems(new Rec[]{
+              new RealmPicker(new Asgard(),powerMenu,root,(x-200)/2,275),
+              new RealmPicker(new Vanaheim(),powerMenu,root,(x-600)/2 +20,275),
+              new RealmPicker(new Alfheim(),powerMenu,root,(x+200)/2 -20,275),
+
+              new RealmPicker(new Niflheim(),powerMenu,root,(x-200)/2,450),
+              new RealmPicker(new Muspelheim(),powerMenu,root,(x-600)/2 + 20,450),
+              new RealmPicker(new Jotunheim(),powerMenu,root,(x+200)/2 - 20,450),
+
+
+              reaSelect,midSelect,sMin,retu});
+
+      powerMenu.setItems(new Rec[]{sMin});
 
       aISelect.setItems(new Rec[]{home,sMin,retu,logo});
       settings.setItems(new Rec[]{home,sMin,retu,logo});
