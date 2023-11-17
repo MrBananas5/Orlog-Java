@@ -1,15 +1,17 @@
 package com.example.orlog.Realms;
 
-public class GamePack {
-    private final String power = null;
+import com.example.orlog.Powers.Power;
+
+public class Midgard {
+    protected Power power = null;
     private final String name;
-    String sname;
-    public GamePack(String name){
+    protected String sname;
+    public Midgard(String name){
         this.name = name;
         this.sname = name;
     }
 
-    public String getPower(){return power;}
+    public Power getPower(){return power;}
 
     public String getName() {return name;}
 

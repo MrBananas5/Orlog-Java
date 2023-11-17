@@ -1,10 +1,13 @@
 package com.example.orlog.Realms;
 
-public class Asgard extends GamePack{
-    private final String power = "Idun's Apple";
+import com.example.orlog.Game.DicePack;
+import com.example.orlog.Powers.Idun;
 
-    public Asgard() {
+public class Asgard extends Midgard {
+
+    public Asgard(DicePack pack) {
         super("Asgard");
+        power = new Idun(99,452,pack);
     }
 
 }

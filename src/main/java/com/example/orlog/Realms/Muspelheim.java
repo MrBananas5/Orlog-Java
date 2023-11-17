@@ -1,10 +1,13 @@
 package com.example.orlog.Realms;
 
-public class Muspelheim extends GamePack{
-    private final String power = "Surtur's Flame";
+import com.example.orlog.Game.DicePack;
+import com.example.orlog.Powers.Surtur;
 
-    public Muspelheim() {
+public class Muspelheim extends Midgard {
+
+    public Muspelheim(DicePack pack) {
         super("Muspelheim"); this.sname = "Muspel";
+        power = new Surtur(99,452,pack);
     }
 
 }

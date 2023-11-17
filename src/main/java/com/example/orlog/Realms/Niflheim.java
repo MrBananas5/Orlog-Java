@@ -1,10 +1,13 @@
 package com.example.orlog.Realms;
 
-public class Niflheim extends GamePack{
-    private final String power = "Heimdall's Vision";
+import com.example.orlog.Game.DicePack;
+import com.example.orlog.Powers.Heimdall;
 
-    public Niflheim() {
+public class Niflheim extends Midgard {
+
+    public Niflheim(DicePack pack) {
         super("Niflheim");this.sname = "Nifl";
+        power = new Heimdall(99,452,pack);
     }
 
 }

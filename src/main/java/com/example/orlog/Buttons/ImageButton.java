@@ -21,7 +21,12 @@ public class ImageButton extends Rec{
         this.fg = null;
         set(new ImageView[]{bg},x,y,sx,sy);
     }
-    private void set(ImageView[] imgs, int x, int y, int sx, int sy){
+
+    public ImageButton(String path,  int sx, int sy) {
+        super();
+    }
+
+    protected void set(ImageView[] imgs, int x, int y, int sx, int sy){
         for (ImageView v: imgs){
             v.setX(x);
             v.setY(y);
@@ -34,4 +39,14 @@ public class ImageButton extends Rec{
         if (fg !=null) {group.add(fg);}
     }
     public Node getNode(){return bg;}
+
+    public void delete(List<Node> group) {
+        group.remove(bg);
+        if (fg !=null) {group.remove(fg);}
+    }
+    public void setX(int x){
+        bg.setX(x);
+        if (fg !=null) {fg.setX(x);}
+    }
+
 }

@@ -2,10 +2,13 @@ package com.example.orlog.Menu;
 
 import com.example.orlog.Buttons.*;
 
+import com.example.orlog.Game.DicePack;
+import com.example.orlog.Powers.*;
 import com.example.orlog.Realms.*;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.RadialGradient;
@@ -14,8 +17,30 @@ import javafx.stage.Stage;
 
 
 public class MenuController {
+   public static MenuController menucontroller;
+   private Menu menu;
+   private Menu oldMenu;
+
+   public DicePack getDicePack() {
+      return dicePack;
+   }
+
+   private final DicePack dicePack;
+
+   public Group getGroup() {
+      return root;
+   }
+
+   private final Group root;
+
+   public PowerMenu getPowerMenu() {
+      return powerMenu;
+   }
+
+   private final PowerMenu powerMenu;
    public MenuController(Stage stage){
-      Group root = new Group();
+      menucontroller = this;
+      root = new Group();
       int x = 900; int y = 750;
       Scene scene = new Scene(root, x, y);
       scene.setFill(new RadialGradient(
@@ -24,9 +49,12 @@ public class MenuController {
               new Stop(0, Color.web("#3d1b08")),    //colors
               new Stop(1, Color.web("#58270c")))
       );
+      stage.getIcons().add(new Image("file:C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/Midgard/Icon.png"));
       stage.setTitle("Orlog - Menu");
       stage.setScene(scene);
       stage.show();
+
+      dicePack = new DicePack();
 
       Menu p2Select = new Menu();
       Menu mainMenu = new Menu();
@@ -41,11 +69,11 @@ public class MenuController {
       Menu hostMenu = new Menu();
       Menu joinMenu = new Menu();
       Menu realmSelect = new Menu();
-      PowerMenu powerMenu = new PowerMenu();
+      powerMenu = new PowerMenu();
 
       MinButton home = new MinButton(mainMenu,root,"Symb_home",10,y-135);
       MinButton sMin = new MinButton(settings,root,"Symb_settings",x-135,10);
-      MinButton retu = new MinButton(mainMenu,root,"Symb_return",x-135,y-135);
+      ReturnButton retu = new ReturnButton(root,x-135,y-135);
 
       ImageButton logo = new ImageButton("","Newlogo",(x-256)/2,40,256,171);
 
@@ -84,19 +112,27 @@ public class MenuController {
 
               reaSelect,midSelect,sMin,retu});
       realmSelect.setItems(new Rec[]{
-              new RealmPicker(new Asgard(),powerMenu,root,(x-200)/2,275),
+              new RealmPicker(new Asgard(dicePack),powerMenu,root,(x-200)/2,275),
               new RealmPicker(new Vanaheim(),powerMenu,root,(x-600)/2 +20,275),
               new RealmPicker(new Alfheim(),powerMenu,root,(x+200)/2 -20,275),
 
-              new RealmPicker(new Niflheim(),powerMenu,root,(x-200)/2,450),
-              new RealmPicker(new Muspelheim(),powerMenu,root,(x-600)/2 + 20,450),
+              new RealmPicker(new Niflheim(dicePack),powerMenu,root,(x-200)/2,450),
+              new RealmPicker(new Muspelheim(dicePack),powerMenu,root,(x-600)/2 + 20,450),
               new RealmPicker(new Jotunheim(),powerMenu,root,(x+200)/2 - 20,450),
 
 
               reaSelect,midSelect,sMin,retu});
+      Power[] powerItems = new Power[]{
+              new Thor(25,148,dicePack),
+              new Freyja(99,148,dicePack),
+              new Odin(173,148,dicePack),
+              new Loki(173,300,dicePack),
+              new Vidar(25,300,dicePack),
+              new Frigg(99,300,dicePack),
+              };
 
-      powerMenu.setItems(new Rec[]{sMin});
-
+      powerMenu.setItems(powerItems);
+      powerMenu.add(sMin);
       aISelect.setItems(new Rec[]{home,sMin,retu,logo});
       settings.setItems(new Rec[]{home,sMin,retu,logo});
 
@@ -163,8 +199,12 @@ public class MenuController {
 
       hostMenu.setItems(new Rec[]{home,sMin,retu});
       joinMenu.setItems(new Rec[]{home,sMin,retu});
-
+      setMenu(mainMenu);
       mainMenu.set(root);
    }
-
+   public Menu getMenu(){return menu;}
+   public void setMenu(Menu menu ){
+      this.oldMenu = this.menu;
+      this.menu=menu;}
+   public Menu getOldMenu(){return oldMenu;}
 }
