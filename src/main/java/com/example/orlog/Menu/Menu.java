@@ -36,4 +36,8 @@ public class Menu {
     public int getSize() {
         return items.size();
     }
+
+    public void addAll(Rec[] items) {
+        this.items.addAll(Arrays.asList(items));
+    }
 }

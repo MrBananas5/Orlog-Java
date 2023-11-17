@@ -2,7 +2,10 @@ package com.example.orlog.Menu;
 
 import com.example.orlog.Buttons.*;
 
+import com.example.orlog.Game.DiceBuilder;
+import com.example.orlog.Game.DiceMaster;
 import com.example.orlog.Game.DicePack;
+import com.example.orlog.Game.DiceRandom;
 import com.example.orlog.Powers.*;
 import com.example.orlog.Realms.*;
 import javafx.scene.Group;
@@ -32,7 +35,10 @@ public class MenuController {
    }
 
    private final Group root;
-
+   public DiceMenu getDiceMenu() {
+      return diceMenu;
+   }
+   private final DiceMenu diceMenu;
    public PowerMenu getPowerMenu() {
       return powerMenu;
    }
@@ -69,6 +75,7 @@ public class MenuController {
       Menu hostMenu = new Menu();
       Menu joinMenu = new Menu();
       Menu realmSelect = new Menu();
+      diceMenu = new DiceMenu();
       powerMenu = new PowerMenu();
 
       MinButton home = new MinButton(mainMenu,root,"Symb_home",10,y-135);
@@ -132,7 +139,26 @@ public class MenuController {
               };
 
       powerMenu.setItems(powerItems);
-      powerMenu.add(sMin);
+      powerMenu.addAll(new Rec[]{
+              new MinButton(diceMenu,root,"Symb_Dice",10,10),
+              new LTButton(mainMenu,root,"Play",225,453),
+              sMin});
+
+
+
+      DiceBuilder[] diceItems = new DiceBuilder[]{
+              new DiceBuilder("Midgard",138,10),
+              new DiceBuilder("Midgard",138,116),
+              new DiceBuilder("Midgard",138,222),
+              new DiceBuilder("Midgard",138,328),
+              new DiceBuilder("Midgard",138,434),
+              new DiceMaster("Midgard","ALL",276,328),
+              new DiceRandom("Midgard",276,222),
+      };
+      diceMenu.setItems(diceItems);
+      diceMenu.add(sMin);
+      diceMenu.add(retu);
+
       aISelect.setItems(new Rec[]{home,sMin,retu,logo});
       settings.setItems(new Rec[]{home,sMin,retu,logo});
 

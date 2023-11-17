@@ -25,17 +25,16 @@ public class Power extends ImageButton  {
         this.y = y;
         this.name = name;
         bg.setOnMouseClicked(mouseEvent -> addto(pack,p));
-    }
+    }//10+(300/pack.getSize(p)*pack.powerIndex(p,this)+((900-84)*p)
+    //10+(pack.powerIndex(p,this)*(((2*p)-1)*-74))+((900-84)*p))
     public void rePos(DicePack pack){
-        child.setX(10+(pack.powerIndex(p,this)*(((2*p)-1)*-74))+((900-84)*p));
+
+        child.setX((p*836) +((2*p)-1)*- (10+(440/pack.powerSize(p)*pack.powerIndex(p,this))));
     }
     public void setPlayer2(){p = 1;}
     public void addto(DicePack pack, int p){
         if (child == null){
-        child = new ImageButton("Buttons/Statues/",name,10+(pack.powerSize(p)*(((2*p)-1)*-74))+((900-84)*p),750-138,64,128);}
-        else {
-            child.setX(10+(pack.powerSize(p)*(((2*p)-1)*-74))+((900-84)*p));
-        }
+            child = new ImageButton("Buttons/Statues/",name,10,750-138,64,128);}
         pack.addPower(this,p);
 
     }

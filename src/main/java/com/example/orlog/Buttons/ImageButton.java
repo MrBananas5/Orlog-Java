@@ -10,7 +10,7 @@ import java.util.List;
 public class ImageButton extends Rec{
     protected ImageView fg;
     protected ImageView bg;
-    protected static final String absPath = "C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/";
+    protected static final String absPath = "file:C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/";
     public ImageButton(String path, String foreground, String background, int x, int y,int sx, int sy){
         this.fg = new ImageView(new Image(absPath +path +foreground+".png"));
         this.bg = new ImageView(new Image(absPath +path +background+".png"));

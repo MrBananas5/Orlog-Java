@@ -25,12 +25,16 @@ public class DicePack {
         for (int i = 0;i<2;i++){
             powers.add(new ArrayList<>());
             dice.add(new ArrayList<>());
+
         }
     }
     private void removePower(Power power, int p){
         power.getChild().delete(menucontroller.getGroup().getChildren());
         menucontroller.getPowerMenu().remove(power.getChild());
         powers.get(p).remove(power);
+        rePos(p);
+    }
+    private void rePos(int p){
         for (Power pow : powers.get(p)){
             pow.rePos(this);
         }
@@ -55,6 +59,7 @@ public class DicePack {
             powers.get(p).add(power);
             menucontroller.getPowerMenu().add(power.getChild());
             power.getChild().load(menucontroller.getGroup().getChildren());
+            rePos(p);
         }
     }
 

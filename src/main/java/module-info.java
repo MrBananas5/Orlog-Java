@@ -11,4 +11,6 @@ module com.example.orlog {
     opens com.example.orlog.Menu to javafx.fxml;
     exports com.example.orlog.Realms;
     opens com.example.orlog.Realms to javafx.fxml;
+    exports com.example.orlog.Game;
+    opens com.example.orlog.Game to javafx.fxml;
 }

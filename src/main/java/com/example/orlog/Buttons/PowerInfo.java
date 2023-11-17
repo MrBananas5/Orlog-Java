@@ -14,11 +14,14 @@ public class PowerInfo extends InfoButton {
     public PowerInfo(String name, String blessing, int cost,String desc, TextInfo tx, int x, int y) {
         super("Buttons/Statues/", name, name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc, tx, x, y, 64, 128);
         label = new Label(name);
+
+        label.setLayoutX(x+69);
+        label.setLayoutY(y+16);
+        label.setPrefSize(200,64);
+
+
         label.setFont(Font.loadFont(absPath+ "norse.bold.otf", 56));
         label.setTextFill(Color.web("#000000"));
-        label.setPrefSize(200,64);
-        label.setLayoutY(y+16);
-        label.setLayoutX(x+69);
         label.setOnMousePressed(mouseEvent -> onClick(tx,name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc));
 
         fg = new ImageView(new Image(absPath+"Midgard/"+name+".png"));
@@ -29,8 +32,7 @@ public class PowerInfo extends InfoButton {
         fg.setY(32);
     }
     public void load(List<Node> group){
-        group.add(bg);
+        super.load(group);
         group.add(label);
-        group.add(fg);
     }
 }
