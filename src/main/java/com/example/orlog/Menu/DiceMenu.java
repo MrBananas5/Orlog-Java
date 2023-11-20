@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import static com.example.orlog.Menu.MenuController.menucontroller;
 
 public class DiceMenu extends Menu{
+    public DiceMenu(String name) {
+        super(name);
+    }
+
     public ArrayList<Rec> getItems(){
         return items;
     }

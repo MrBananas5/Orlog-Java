@@ -7,9 +7,11 @@ import java.util.Arrays;
 import static com.example.orlog.Menu.MenuController.menucontroller;
 
 public class Menu {
+    private final String name;
     protected final ArrayList<Rec> items;
-    public Menu(){
+    public Menu(String name){
         items = new ArrayList<>();
+        this.name = name;
     }
     public void remove(Rec n){items.remove(n);}
     public void add(Rec n){
@@ -20,6 +22,7 @@ public class Menu {
         this.items.addAll(Arrays.asList(items));
     }
     public void set(Group group){
+        menucontroller.setMenuTitle(name);
         menucontroller.getMenu().clear(group);
         load(group);
         menucontroller.setMenu(this);

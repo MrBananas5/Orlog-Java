@@ -21,6 +21,8 @@ import javafx.stage.Stage;
 
 public class MenuController {
    public static MenuController menucontroller;
+   public void setMenuTitle(String title){stage.setTitle("Orlog - "+ title);}
+   public static String tintCol = "#00ffff";
    private Menu menu;
    private Menu oldMenu;
 
@@ -38,6 +40,7 @@ public class MenuController {
    public DiceMenu getDiceMenu() {
       return diceMenu;
    }
+   private final Stage stage;
    private final DiceMenu diceMenu;
    public PowerMenu getPowerMenu() {
       return powerMenu;
@@ -46,6 +49,7 @@ public class MenuController {
    private final PowerMenu powerMenu;
    public MenuController(Stage stage){
       menucontroller = this;
+      this.stage =  stage;
       root = new Group();
       int x = 900; int y = 750;
       Scene scene = new Scene(root, x, y);
@@ -56,27 +60,26 @@ public class MenuController {
               new Stop(1, Color.web("#58270c")))
       );
       stage.getIcons().add(new Image("file:C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/Midgard/Icon.png"));
-      stage.setTitle("Orlog - Menu");
       stage.setScene(scene);
       stage.show();
 
       dicePack = new DicePack();
 
-      Menu p2Select = new Menu();
-      Menu mainMenu = new Menu();
-      Menu rulesMain = new Menu();
-      Menu settings = new Menu();
-      Menu diceRules = new Menu();
-      Menu powerRules = new Menu();
-      Menu basicRules = new Menu();
-      Menu realmRules = new Menu();
-      Menu envSelect = new Menu();
-      Menu aISelect = new Menu();
-      Menu hostMenu = new Menu();
-      Menu joinMenu = new Menu();
-      Menu realmSelect = new Menu();
-      diceMenu = new DiceMenu();
-      powerMenu = new PowerMenu();
+      Menu p2Select = new Menu("Select an opponent");
+      Menu mainMenu = new Menu("Menu");
+      Menu rulesMain = new Menu("Rules");
+      Menu settings = new Menu("Settings");
+      Menu diceRules = new Menu("Dice Information");
+      Menu powerRules = new Menu("Power Information");
+      Menu basicRules = new Menu("Rules");
+      Menu realmRules = new Menu("Realm Information");
+      Menu envSelect = new Menu("Select a location!");
+      Menu aISelect = new Menu("Select a computer!");
+      Menu hostMenu = new Menu("Host a game");
+      Menu joinMenu = new Menu("Join a game");
+      Menu realmSelect = new Menu("Select a location!");
+      diceMenu = new DiceMenu("Customise dice");
+      powerMenu = new PowerMenu("Choose your powers!");
 
       MinButton home = new MinButton(mainMenu,root,"Symb_home",10,y-135);
       MinButton sMin = new MinButton(settings,root,"Symb_settings",x-135,10);
@@ -109,13 +112,13 @@ public class MenuController {
               home,sMin,retu,logo});
 
       envSelect.setItems(new Rec[]{
-              new MidgardPicker(powerMenu,root,"Anslo",2,(x-200)/2,275),
-              new MidgardPicker(powerMenu,root,"Nidaros",1,(x-600)/2+20,275),
-              new MidgardPicker(powerMenu,root,"Jomsborg",3,(x+200)/2-20,275),
+              new MidgardPicker(powerMenu,root,"Anslo",1,(x-200)/2,275),
+              new MidgardPicker(powerMenu,root,"Nidaros",2,(x-600)/2+20,275),
+              new MidgardPicker(powerMenu,root,"Jomsborg",2,(x+200)/2-20,275),
 
-              new MidgardPicker(powerMenu,root,"Jorvik",2,(x-200)/2,450),
-              new MidgardPicker(powerMenu,root,"Grœnland",1,(x-600)/2+20,450),
-              new MidgardPicker(powerMenu,root,"Vinland",3,(x+200)/2-20,450),
+              new MidgardPicker(powerMenu,root,"Jorvik",1,(x-200)/2,450),
+              new MidgardPicker(powerMenu,root,"Grœnland",2,(x-600)/2+20,450),
+              new MidgardPicker(powerMenu,root,"Vinland",2,(x+200)/2-20,450),
 
               reaSelect,midSelect,sMin,retu});
       realmSelect.setItems(new Rec[]{
@@ -126,7 +129,6 @@ public class MenuController {
               new RealmPicker(new Niflheim(dicePack),powerMenu,root,(x-200)/2,450),
               new RealmPicker(new Muspelheim(dicePack),powerMenu,root,(x-600)/2 + 20,450),
               new RealmPicker(new Jotunheim(),powerMenu,root,(x+200)/2 - 20,450),
-
 
               reaSelect,midSelect,sMin,retu});
       Power[] powerItems = new Power[]{

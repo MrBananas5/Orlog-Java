@@ -30,6 +30,8 @@ public class PowerInfo extends InfoButton {
         fg.setLayoutX(x+5);
         fg.setX(64);
         fg.setY(32);
+        fg.setOnMouseEntered(mouseEvent -> tint("#00ffff"));
+        fg.setOnMouseExited(mouseEvent -> untint());
     }
     public void load(List<Node> group){
         super.load(group);

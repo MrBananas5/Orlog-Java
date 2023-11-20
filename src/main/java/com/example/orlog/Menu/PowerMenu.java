@@ -11,6 +11,11 @@ import static com.example.orlog.Menu.MenuController.menucontroller;
 public class PowerMenu extends Menu{
     private Midgard pack;
     private Power p2Power;
+
+    public PowerMenu(String name) {
+        super(name);
+    }
+
     public void setItems(Power[] items){
         for (Power power: items){
             this.items.add(power);
