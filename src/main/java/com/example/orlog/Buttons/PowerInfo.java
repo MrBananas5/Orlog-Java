@@ -1,5 +1,6 @@
 package com.example.orlog.Buttons;
 
+import com.example.orlog.Menu.MenuController;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -8,6 +9,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.util.List;
+
+
 
 public class PowerInfo extends InfoButton {
     private final Label label;
@@ -25,13 +28,14 @@ public class PowerInfo extends InfoButton {
         label.setOnMousePressed(mouseEvent -> onClick(tx,name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc));
 
         fg = new ImageView(new Image(absPath+"Midgard/"+name+".png"));
-        fg.setOnMousePressed(mouseEvent -> onClick(tx,name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc));
         fg.setLayoutY(y+59);
         fg.setLayoutX(x+5);
         fg.setX(64);
         fg.setY(32);
-        fg.setOnMouseEntered(mouseEvent -> tint("#00ffff"));
-        fg.setOnMouseExited(mouseEvent -> untint());
+        fg.setOnMousePressed(mouseEvent -> onClick(tx,name+ "'s " +blessing +"\nCOST: "+cost +"\n"+ desc));
+
+        readyTint(MenuController.tintCol,fg);
+
     }
     public void load(List<Node> group){
         super.load(group);

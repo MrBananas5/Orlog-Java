@@ -1,6 +1,8 @@
 package com.example.orlog.Menu;
 import com.example.orlog.Buttons.Rec;
 import javafx.scene.Group;
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -43,4 +45,5 @@ public class Menu {
     public void addAll(Rec[] items) {
         this.items.addAll(Arrays.asList(items));
     }
+
 }

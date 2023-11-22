@@ -6,7 +6,7 @@ import com.example.orlog.Powers.Heimdall;
 public class Niflheim extends Midgard {
 
     public Niflheim(DicePack pack) {
-        super("Niflheim");this.sname = "Nifl";
+        super("Niflheim","#5555FF");this.sname = "Nifl";
         power = new Heimdall(99,452,pack);
     }
 

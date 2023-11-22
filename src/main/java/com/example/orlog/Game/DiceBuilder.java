@@ -1,7 +1,7 @@
 package com.example.orlog.Game;
 
 import com.example.orlog.Buttons.ImageButton;
-import javafx.scene.Group;
+import com.example.orlog.Menu.MenuController;
 import javafx.scene.image.Image;
 
 public class DiceBuilder extends ImageButton {
@@ -11,7 +11,7 @@ public class DiceBuilder extends ImageButton {
     protected String realm;
     protected int x;protected int y;
     public DiceBuilder(String realm, int x, int y) {
-        super(realm+"/", "Gold_Front","Basic_Back", x, y, 96, 96);
+        super(realm+"/", "Gold_Front","Basic_Back", x, y, 96, 96, MenuController.tintCol);
         bg.setOnMouseClicked(mouseEvent -> onClick());
         this.realm = realm;
         this.x = x;this.y = y;
@@ -31,6 +31,9 @@ public class DiceBuilder extends ImageButton {
     }
     private String getFront(){
         return absPath+realm+"/"+new String[]{"Gold", "Frigg","Vidar","Loki","Gold"}[n]+"_Front";
+    }
+    public DiceVal getType(){
+        return new DiceVal[]{DiceVal.BASIC,DiceVal.FRIGG,DiceVal.VIDAR,DiceVal.LOKI,DiceVal.ODIN}[n];
     }
     public DiceBuilder copy(){return new DiceBuilder(realm,900-x-125,y);}
     public void setN(int n){this.n = (n%5);setImg();}

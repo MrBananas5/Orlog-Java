@@ -4,7 +4,7 @@ import com.example.orlog.Buttons.*;
 
 import com.example.orlog.Game.*;
 import com.example.orlog.Powers.*;
-import com.example.orlog.Realms.*;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class MenuController {
    public static MenuController menucontroller;
    public void setMenuTitle(String title){stage.setTitle("Orlog - "+ title);}
-   public static String tintCol = "#00ffff";
+   public static String tintCol = "#0e8eb5";
    private Menu menu;
    private Menu oldMenu;
    public DicePack getDicePack() {
@@ -81,8 +81,7 @@ public class MenuController {
       MinButton sMin = new MinButton(settings,root,"Symb_settings",x-135,10);
       ReturnButton retu = new ReturnButton(root,x-135,y-135);
 
-      ImageButton logo = new ImageButton("","Newlogo",(x-562)/2,0,562,342);
-      logo.getNode().setOnMouseEntered(mouseEvent -> {});
+      NullImage logo = new NullImage("","Newlogo",(x-562)/2,0,562,342);
 
       HTButton midSelect = new HTButton(envSelect,root,"Midgard",128,90);
       HTButton reaSelect = new HTButton(realmSelect,root,"Yggdrasil",x-403,90);
@@ -91,6 +90,8 @@ public class MenuController {
       MinButton reaInf = new MinButton(realmRules,root,"Symb_Tree",145,10);
       MinButton dicInf = new MinButton(diceRules,root,"Symb_Dice",280,10);
       MinButton powInf = new MinButton(powerRules,root,"Symb_Favour",415,10);
+
+
       mainMenu.setItems(new Rec[]{
               new LTButton(p2Select,root,"play",(x-450)/2,y-405),
               new LTButton(rulesMain,root,"rules",(x-450)/2,y-270),
@@ -108,29 +109,29 @@ public class MenuController {
 
       p2Select.setItems(new Rec[]{
               new LTButton(aISelect, root,"Computer",(x-450)/2,y-270),
-              new PlayerButton(new Player(1),envSelect,root,"Buttons/","Local","LT_Back",(x-450)/2,y-405,450,125),
+              new PlayerButton(new Player(Playnum.PLAYER2),envSelect,root,"Buttons/","Local","LT_Back",(x-450)/2,y-405,450,125),
               new HTButton(hostMenu,root,"Host",(x-1350/2),y-135),
               new HTButton(joinMenu,root,"Join",(x-900/2),y-135),
               home,sMin,retu,logo});
 
       envSelect.setItems(new Rec[]{
-              new MidgardPicker(powerMenu,root,"Anslo",1,(x-200)/2,275),
-              new MidgardPicker(powerMenu,root,"Nidaros",2,(x-600)/2+20,275),
-              new MidgardPicker(powerMenu,root,"Jomsborg",2,(x+200)/2-20,275),
+             ///new MidgardPicker(powerMenu,root,"Anslo",1,(x-200)/2,275),
+             ///new MidgardPicker(powerMenu,root,"Nidaros",2,(x-600)/2+20,275),
+             ///new MidgardPicker(powerMenu,root,"Jomsborg",2,(x+200)/2-20,275),
 
-              new MidgardPicker(powerMenu,root,"Jorvik",1,(x-200)/2,450),
-              new MidgardPicker(powerMenu,root,"Grœnland",2,(x-600)/2+20,450),
-              new MidgardPicker(powerMenu,root,"Vinland",2,(x+200)/2-20,450),
+              new MidgardPicker(powerMenu,root,"Jorvik","#fceb35",1,(x-200)/2,450),
+              ///new MidgardPicker(powerMenu,root,"Grœnland",2,(x-600)/2+20,450),
+              ///new MidgardPicker(powerMenu,root,"Vinland",2,(x+200)/2-20,450),
 
               reaSelect,midSelect,sMin,retu});
       realmSelect.setItems(new Rec[]{
-              new RealmPicker(new Asgard(dicePack),powerMenu,root,(x-200)/2,275),
-              new RealmPicker(new Vanaheim(),powerMenu,root,(x-600)/2 +20,275),
-              new RealmPicker(new Alfheim(),powerMenu,root,(x+200)/2 -20,275),
+             /// new RealmPicker(new Asgard(dicePack),powerMenu,root,(x-200)/2,275),
+             /// new RealmPicker(new Vanaheim(),powerMenu,root,(x-600)/2 +20,275),
+             /// new RealmPicker(new Alfheim(),powerMenu,root,(x+200)/2 -20,275),
 
-              new RealmPicker(new Niflheim(dicePack),powerMenu,root,(x-200)/2,450),
-              new RealmPicker(new Muspelheim(dicePack),powerMenu,root,(x-600)/2 + 20,450),
-              new RealmPicker(new Jotunheim(),powerMenu,root,(x+200)/2 - 20,450),
+             /// new RealmPicker(new Niflheim(dicePack),powerMenu,root,(x-200)/2,450),
+             /// new RealmPicker(new Muspelheim(dicePack),powerMenu,root,(x-600)/2 + 20,450),
+             /// new RealmPicker(new Jotunheim(),powerMenu,root,(x+200)/2 - 20,450),
 
               reaSelect,midSelect,sMin,retu});
       Power[] powerItems = new Power[]{
@@ -145,7 +146,7 @@ public class MenuController {
       powerMenu.setItems(powerItems);
       powerMenu.addAll(new Rec[]{
               new MinButton(diceMenu,root,"Symb_Dice",10,10),
-              new LTButton(mainMenu,root,"Play",225,453),
+              new PlayButton(225,453),
               sMin});
 
       DiceBuilder[] diceItems = new DiceBuilder[]{
@@ -237,6 +238,10 @@ public class MenuController {
       joinMenu.setItems(new Rec[]{home,sMin,retu});
       setMenu(mainMenu);
       mainMenu.set(root);
+   }
+   public void begin(){
+      diceMenu.setDice(dicePack,powerMenu.getRealm());
+      new GameController(this.powerMenu.getRealm(),this.player,this.dicePack,stage,stage.getScene());
    }
    public Menu getMenu(){return menu;}
    public void setMenu(Menu menu ){

@@ -1,8 +1,7 @@
 package com.example.orlog.Buttons;
 
 
-import com.example.orlog.Menu.MenuController;
-import javafx.scene.CacheHint;
+
 import javafx.scene.Node;
 import javafx.scene.effect.*;
 import javafx.scene.image.Image;
@@ -11,25 +10,29 @@ import javafx.scene.paint.Color;
 
 import java.util.List;
 
-import static com.example.orlog.Menu.MenuController.menucontroller;
+
 
 public class ImageButton extends Rec{
     protected ImageView fg;
     protected ImageView bg;
     protected static final String absPath = "file:C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/";
-    private ImageView get(String path){return new ImageView( new Image(path));}
-    public ImageButton(String path, String foreground, String background, int x, int y,int sx, int sy){
+
+    public ImageButton(String path, String foreground, String background, int x, int y, int sx, int sy, String tintCol) {
         this.bg = get(absPath +path +background+".png");
         this.fg = get(absPath +path +foreground+".png");
-        set(new ImageView[]{fg,bg},x,y,sx,sy,"#00FFFF");
-
+        set(new ImageView[]{fg,bg},x,y,sx,sy,tintCol);
     }
-    public ImageButton(String path, String background, int x, int y,int sx, int sy){
+
+    private ImageView get(String path){return new ImageView( new Image(path));}
+
+
+
+    public ImageButton(String path, String background, int x, int y,int sx, int sy,String tintCol){
         this.bg = get(absPath +path +background+".png");
         this.fg = null;
-        set(new ImageView[]{bg},x,y,sx,sy, MenuController.tintCol);
+        set(new ImageView[]{bg},x,y,sx,sy, tintCol);
     }
-    private void readyTint(String col, ImageView img){
+    public void readyTint(String col, ImageView img){
         img.setOnMouseEntered(mouseEvent -> tint(col));
         img.setOnMouseExited(mouseEvent -> untint());
     }
@@ -52,13 +55,10 @@ public class ImageButton extends Rec{
         ColorInput adjust = new ColorInput(img.getX(), img.getY(),img.getFitWidth(),img.getFitHeight(),col);
         Blend blush = new Blend(BlendMode.SRC_ATOP ,image,adjust);
 
-        Blend blush2 = new Blend(BlendMode.MULTIPLY,blush,image);
+        Blend blush2 = new Blend(BlendMode.OVERLAY,image,blush);
         img.setEffect(blush2);
     }
 
-    public ImageButton(String path,  int sx, int sy) {
-        super();
-    }
 
     protected void set(ImageView[] imgs, int x, int y, int sx, int sy,String col){
         for (ImageView v: imgs){

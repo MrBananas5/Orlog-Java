@@ -44,4 +44,7 @@ public class PowerMenu extends Menu{
         remove(p2Power);
         }
 
+    public Midgard getRealm() {
+        return pack;
+    }
 }

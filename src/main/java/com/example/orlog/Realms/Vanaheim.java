@@ -3,7 +3,7 @@ package com.example.orlog.Realms;
 public class Vanaheim extends Midgard {
 
     public Vanaheim() {
-        super("Vanaheim");this.sname = "Vana";
+        super("Vanaheim","#FFFFFF");this.sname = "Vana";
     }
 
 }
