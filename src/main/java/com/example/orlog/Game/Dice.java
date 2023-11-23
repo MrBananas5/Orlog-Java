@@ -1,20 +1,20 @@
 package com.example.orlog.Game;
 
 import com.example.orlog.Realms.Midgard;
-import javafx.event.EventHandler;
+
 import javafx.scene.Group;
-import javafx.scene.input.MouseEvent;
+
 
 import java.util.Random;
 
-import static com.example.orlog.Game.DiceVal.getBorder;
+
 
 public class Dice {
     private final Side[] sides;
     private Side active;
-    private Random rand;
-    private DiceVal type;
-    private DiceVal[] symbs;
+    private final Random rand;
+    private final DiceVal type;
+    private final DiceVal[] symbs;
     private boolean chosen;
 
     private int x;

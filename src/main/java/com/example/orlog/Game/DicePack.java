@@ -3,8 +3,6 @@ package com.example.orlog.Game;
 
 import com.example.orlog.Powers.Power;
 import com.example.orlog.Realms.Midgard;
-import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 
 import static com.example.orlog.Game.DiceVal.*;

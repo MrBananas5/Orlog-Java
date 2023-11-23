@@ -105,6 +105,11 @@ public class Midgard {
         p2.incFavour(-p1.getBorders(LOKI));
         p1.incFavour(p1.getBorders(GOLD));
         p2.incHealth(-p1.getDmg());
+        for (Power power: p1.getPowers()){
+            if (power.isActive()){
+                power.doIt(p1,this);
+            }
+        }
         System.out.println(p1.getDmg());
         for (Dice dice: p1.getDice()) {
             dice.setChosen(false);

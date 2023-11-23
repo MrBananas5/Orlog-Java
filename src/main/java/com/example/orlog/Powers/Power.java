@@ -20,6 +20,7 @@ public class Power extends ImageButton  {
 
     private ImageButton child;
     private Playnum p;
+    private boolean active;
 
 
     public Power(String name, int cost, int x, int y, DicePack pack) {
@@ -34,10 +35,10 @@ public class Power extends ImageButton  {
     //10+(pack.powerIndex(p,this)*(((2*p)-1)*-74))+((900-84)*p))
     public ImageButton getPower(String path,int x, int y,Player p,String tintCol){
         ImageButton toRet = new ImageButton(path,name,x,y,64,32,tintCol);
-        toRet.getNode().setOnMouseClicked(mouseEvent -> activate(p));
+        toRet.getNode().setOnMouseClicked(mouseEvent -> activate());
         return toRet;
     }
-    private void activate(Player p){System.out.println("boom!");}
+    private void activate(){active = !active;}
     public void doIt(Player p, Midgard realm){}
     public void rePos(DicePack pack){
 
@@ -54,4 +55,6 @@ public class Power extends ImageButton  {
 
     public Power copy(DicePack dicePack) {
     return null;}
+
+    public boolean isActive() {return active;}
 }
