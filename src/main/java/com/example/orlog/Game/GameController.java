@@ -63,7 +63,7 @@ public class GameController {
                 t.load(root.getChildren());
             }
             for (int i = 0; i < p.getPowers().size(); i++) {
-                p.getPowers().get(i).getPower(gamePack.getPath(), (x / 2) + 100 - (64 * p.getPowers().size()) + 64 * i, ((y - 32) / 2 + 100 * p.getPN()), p, gamePack.getTint()).load(root.getChildren());
+                p.getPowers().get(i).getPower(gamePack.getPath(), (x / 2) + 100 - (64 * p.getPowers().size()) + 64 * i, ((y - 32) / 2 + 100 * p.getPN()), gamePack.getTint()).load(root.getChildren());
             }
             for (Dice dice : p.getDice()) {
                 dice.print();

@@ -33,7 +33,7 @@ public class Power extends ImageButton  {
         bg.setOnMouseClicked(mouseEvent -> addto(pack,p));
     }//10+(300/pack.getSize(p)*pack.powerIndex(p,this)+((900-84)*p)
     //10+(pack.powerIndex(p,this)*(((2*p)-1)*-74))+((900-84)*p))
-    public ImageButton getPower(String path,int x, int y,Player p,String tintCol){
+    public ImageButton getPower(String path, int x, int y, String tintCol){
         ImageButton toRet = new ImageButton(path,name,x,y,64,32,tintCol);
         toRet.getNode().setOnMouseClicked(mouseEvent -> activate());
         return toRet;
