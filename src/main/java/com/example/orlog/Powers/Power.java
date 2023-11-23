@@ -5,10 +5,12 @@ import com.example.orlog.Game.DicePack;
 import com.example.orlog.Game.Player;
 import com.example.orlog.Game.Playnum;
 import com.example.orlog.Menu.MenuController;
+import com.example.orlog.Realms.Midgard;
+
 public class Power extends ImageButton  {
     final private String name;
 
-
+    protected int cost;
 
     protected int x;
     protected int y;
@@ -20,12 +22,13 @@ public class Power extends ImageButton  {
     private Playnum p;
 
 
-    public Power(String name, int x, int y, DicePack pack) {
+    public Power(String name, int cost, int x, int y, DicePack pack) {
         super("Buttons/Statues/",name,x,y,64,128,MenuController.tintCol);
         p = Playnum.PLAYER1 ;
         this.x = x;
         this.y = y;
         this.name = name;
+        this.cost = cost;
         bg.setOnMouseClicked(mouseEvent -> addto(pack,p));
     }//10+(300/pack.getSize(p)*pack.powerIndex(p,this)+((900-84)*p)
     //10+(pack.powerIndex(p,this)*(((2*p)-1)*-74))+((900-84)*p))
@@ -35,6 +38,7 @@ public class Power extends ImageButton  {
         return toRet;
     }
     private void activate(Player p){System.out.println("boom!");}
+    public void doIt(Player p, Midgard realm){}
     public void rePos(DicePack pack){
 
         child.setX((p.getNumber()*836) +((2*p.getNumber())-1)*- (10+(440/pack.powerSize(p)*pack.powerIndex(p,this))));

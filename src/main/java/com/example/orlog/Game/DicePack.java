@@ -3,6 +3,7 @@ package com.example.orlog.Game;
 
 import com.example.orlog.Powers.Power;
 import com.example.orlog.Realms.Midgard;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
@@ -83,12 +84,9 @@ public class DicePack {
     public void setDice(Playnum p,Midgard realm, DiceVal[] vals){
         DiceVal[] symbs = new DiceVal[]{AXE,WARRIOR,BOW,SHIELD,THIEF};
 
-        for (int i = 0; i<vals.length;i++){
-            DiceVal[][] sides = new DiceVal[][]{null,null,null,null,null,null};
-            for (int j = 0;j<6;j++){
-                sides[j] = new DiceVal[]{vals[i],getBorder(j,vals[i]),symbs[(i+j)%5]};
-            }
-
-            dice.get(p.getNumber()).add(new Dice(realm,sides,96,96));}
+        for (int i = 0; i<5;i++){
+            DiceVal[] sides = new DiceVal[]{null,null,null,null,null,null};
+            for (int j =0; j<6;j++){sides[j] = symbs[(i+j)%5];}
+            dice.get(p.getNumber()).add(new Dice(realm,vals[i],sides,96,96));}
     }
 }

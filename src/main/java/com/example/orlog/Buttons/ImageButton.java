@@ -23,7 +23,7 @@ public class ImageButton extends Rec{
         set(new ImageView[]{fg,bg},x,y,sx,sy,tintCol);
     }
 
-    private ImageView get(String path){return new ImageView( new Image(path));}
+    protected ImageView get(String path){return new ImageView( new Image(path));}
 
 
 

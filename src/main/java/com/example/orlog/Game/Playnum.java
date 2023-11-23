@@ -18,4 +18,5 @@ public enum Playnum {
     public int getNumber() {
         return number;
     }
+    public int getInv() {return 1-number;}
 }

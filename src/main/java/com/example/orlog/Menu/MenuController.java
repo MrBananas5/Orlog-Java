@@ -47,6 +47,7 @@ public class MenuController {
       menucontroller = this;
       this.stage =  stage;
       root = new Group();
+      stage.setResizable(false);
       int x = 900; int y = 750;
       Scene scene = new Scene(root, x, y);
       scene.setFill(new RadialGradient(
