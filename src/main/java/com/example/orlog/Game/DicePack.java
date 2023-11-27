@@ -35,7 +35,7 @@ public class DicePack {
     private void start(){
         maxPower =7;
         startHealth = 15;
-        startEnergy = 0;
+        startEnergy = 12;
         dice = new ArrayList<>();
         powers = new ArrayList<>();
         for (int i = 0;i<2;i++){

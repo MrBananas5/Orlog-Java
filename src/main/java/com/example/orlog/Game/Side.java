@@ -12,14 +12,13 @@ public class Side extends ImageButton {
     private final DiceVal symb;
     private final DiceVal border;
     private final ImageView mg;
-    private final String tintCol;
     public Side(String path, DiceVal back, DiceVal border, DiceVal symb, int sx, int sy, String tintCol ) {
         super(path, symb.name(), back.name()+"_Back", 0, 0, sx, sy,tintCol);
         this.back = back;
         this.symb = symb;
         this.border = border;
-        this.tintCol = tintCol;
         mg = get(absPath +path +border.name()+"_Front.png");
+        set(new ImageView[]{bg, mg, fg}, 0, 0, 96, 96, tintCol);
     }
 
     public String getString() { return ("(" +back.name() + ","+symb.name()+ ","+border.name()+")");
@@ -30,8 +29,18 @@ public class Side extends ImageButton {
     }
     public void load(int x, int y, List<Node> group) {
         super.load(group);
-        set(new ImageView[]{bg, mg, fg}, x, y, 96, 96, tintCol);
         group.add(mg);
+        this.fg.setX(x);
+        this.fg.setY(y);
+        this.bg.setY(y);
+        this.bg.setX(x);;
+        this.mg.setY(y);
+        this.mg.setX(x);;
+
+    }
+    public void set(int s, int x, int y,String tint){
+        super.set(new ImageView[]{fg,mg,bg},x,y,s,s,tint);
+        if (tint == null){nulled();}
     }
     public void tint(String col){
         tintImg(fg, Color.web(col));
@@ -43,6 +52,24 @@ public class Side extends ImageButton {
     }
     public DiceVal getSymb(){return symb;}
 
+
     public DiceVal getBorder() {return border;}
 
+    public void nulled(){
+        fg.setOnMouseEntered(mouseEvent -> {});
+        mg.setOnMouseEntered(mouseEvent -> {});
+        bg.setOnMouseEntered(mouseEvent -> {});
+    }
+    public void dim() {
+        bg.setOnMouseExited(mouseEvent -> untint());
+        fg.setOnMouseExited(mouseEvent -> untint());
+        mg.setOnMouseExited(mouseEvent -> untint());
+    }
+
+    public void highlight() {
+        fg.setOnMouseExited(mouseEvent -> {});
+        mg.setOnMouseExited(mouseEvent -> {});
+        bg.setOnMouseExited(mouseEvent -> {});
+
+    }
 }

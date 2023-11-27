@@ -16,14 +16,15 @@ public class Dice {
     private final DiceVal type;
     private final DiceVal[] symbs;
     private boolean chosen;
-
+    private String tint;
     private int x;
     private int y;
 
     public Dice(Midgard realm, DiceVal type,DiceVal[] sides, int sx, int sy) {
         this.sides = new Side[]{null,null,null,null,null,null};
+        tint = realm.getTint();
         for (int n = 0;n<6;n++){
-            this.sides[n] = new Side(realm.getPath(),type,DiceVal.getBorder(n,type),sides[n],sx,sy,realm.getTint());
+            this.sides[n] = new Side(realm.getPath(),type,DiceVal.getBorder(n,type),sides[n],sx,sy,tint);
             this.sides[n].setClick(this);
         }
         rand = new Random();
@@ -52,10 +53,15 @@ public class Dice {
     public void hide(Group root){
         if (active != null) {
             active.delete(root.getChildren());
+            active.set(96,0,0,tint);
         }
     }
 
-    public void toggleChosen() {chosen = !chosen;}
+    public void toggleChosen() {
+        chosen = !chosen;
+    if (chosen){active.highlight();
+    }else{active.dim();}
+    }
 
     public int getX() {
         return x;
@@ -81,10 +87,26 @@ public class Dice {
     public void setChosen(boolean b) {chosen = b;}
 
     public DiceVal getSymb() {
-        return active.getSymb();
+        if (this.active != null) {
+            return active.getSymb();
+        }
+        return null;
     }
 
     public DiceVal getBorder() {
         return active.getBorder();
     }
+
+    public void dim() {
+        if (this.active != null) {
+        active.untint();
+        active.dim();
+    }}
+
+    public void miniDisplay(Group root,int s, int x, int y) {
+        active.set(s,x,y,null);
+        active.untint();
+        active.load(x,y,root.getChildren());
+    }
+
 }

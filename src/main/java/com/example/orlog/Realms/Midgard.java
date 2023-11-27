@@ -82,7 +82,7 @@ public class Midgard {
 
         }
     }}
-    public void displayDice(Group root,ArrayList<Dice> pdice, int y1,int y2){
+    public void displayDice(Group root,ArrayList<Dice> pdice, int y1,int y2, int x3, int y3){
         for (Dice dice:pdice) {
             if (!dice.getChosen()) {
                 int[] pos = dicePos(pdice, y1, y2);
@@ -91,30 +91,35 @@ public class Midgard {
         }
     }
     public void hideDice(Group root,ArrayList<Dice> pdice){
+        int n = 0;
         for (Dice dice:pdice){
-            dice.hide(root);}
+            dice.hide(root);
+            if (dice.getChosen()){dice.miniDisplay(root,48, (n++*50),(750-48)/2);}
+        }
     }
-    public void resolve(Player p1,Player p2){
+    public void resolve(Player p1,Player p2,Group root){
         p1.incDmg((p1.getSymbs(AXE) - p2.getSymbs(WARRIOR)));
         p1.incDmg((p1.getSymbs(BOW)-p2.getSymbs(SHIELD)));
         int f = p2.stealFavour(p1.getSymbs(THIEF));
         p1.incFavour(f);
-        System.out.println(f);
         p1.incDmg(p1.getBorders(VIDAR));
         p1.incHealth(p1.getBorders(FRIGG));
         p2.incFavour(-p1.getBorders(LOKI));
         p1.incFavour(p1.getBorders(GOLD));
-        p2.incHealth(-p1.getDmg());
         for (Power power: p1.getPowers()){
             if (power.isActive()){
-                power.doIt(p1,this);
-            }
+                if (p1.getFavour()>= power.getCost()) {
+                    power.doIt(p1, this);p1.incFavour(-power.getCost());}}
+            power.setActive(false);
         }
-        System.out.println(p1.getDmg());
+        p2.incHealth(-p1.getDmg());
         for (Dice dice: p1.getDice()) {
             dice.setChosen(false);
+            dice.dim();
+            dice.hide(root);
         }
         p1.setDmg(0);
+
     }
 
 }

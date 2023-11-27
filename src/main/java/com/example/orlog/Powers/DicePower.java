@@ -17,6 +17,7 @@ public class DicePower extends Power{
         for (Dice dice: p.getDice() ){
             if (dice.getType() == DiceVal.BASIC){
                 p.getDice().set(p.getDice().indexOf(dice),new Dice(realm,type,dice.getSymbs(),96,96));
+                return;
             }
         }
         p.incFavour(cost);

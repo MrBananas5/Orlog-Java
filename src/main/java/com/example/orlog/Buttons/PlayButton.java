@@ -11,7 +11,6 @@ public class PlayButton extends LTButton{
     }
     @Override
     protected void onClick(Menu menu, Group group) {
-
         menucontroller.begin();
     }
 }

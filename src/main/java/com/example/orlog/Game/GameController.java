@@ -83,7 +83,7 @@ public class GameController {
         //roll Dice
         turnLabel.setText(player.name()+"'s turn");
         gamePack.rollDice(p.getDice());
-        gamePack.displayDice(root,p.getDice(),p.getP().getInv()*495,p.getP().getInv()*495 + (750-495));
+        gamePack.displayDice(root,p.getDice(),p.getP().getInv()*495,p.getP().getInv()*495 + (750-495),p.getP().getNumber()*700,(750-48)/2);
 
 
         //pick dice/powers
@@ -99,7 +99,7 @@ public class GameController {
     private void endTurn(){endPlayerTurn(players[player.getNumber()]);
     }
     private void playerResolve(Player p){
-        gamePack.resolve(p,players[p.getP().getInv()]);
+        gamePack.resolve(p,players[p.getP().getInv()],root);
     }
     private void resolve(){
         playerResolve(players[player.getInv()]);

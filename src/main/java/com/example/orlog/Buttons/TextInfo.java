@@ -20,9 +20,7 @@ public class TextInfo extends Rec{
         label.setFont(Font.loadFont("file:C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/norse.bold.otf", sf));
         label.setTextFill(Color.web("#000000"));
     }
-    public void restore(){
-        label.setText(sampleText);
-    }
+    public void restore(){label.setText(sampleText);}
     public void setText(String s){
         label.setText(s);
     }

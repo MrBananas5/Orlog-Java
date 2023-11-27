@@ -116,23 +116,23 @@ public class MenuController {
               home,sMin,retu,logo});
 
       envSelect.setItems(new Rec[]{
-             ///new MidgardPicker(powerMenu,root,"Anslo",1,(x-200)/2,275),
-             ///new MidgardPicker(powerMenu,root,"Nidaros",2,(x-600)/2+20,275),
-             ///new MidgardPicker(powerMenu,root,"Jomsborg",2,(x+200)/2-20,275),
+              ///new GamePicker(powerMenu,root,"Anslo","#fceb35",1,(x-200)/2,275),
+              ///new GamePicker(powerMenu,root,"Nidaros","#fceb35",2,(x-600)/2+20,275),
+              ///new GamePicker(powerMenu,root,"Jomsborg","#fceb35",2,(x+200)/2-20,275),
 
-              new MidgardPicker(powerMenu,root,"Jorvik","#fceb35",1,(x-200)/2,450),
+              new GamePicker(powerMenu,root,"Jorvik","#fceb35",1,(x-200)/2,450),
               ///new MidgardPicker(powerMenu,root,"Grœnland",2,(x-600)/2+20,450),
               ///new MidgardPicker(powerMenu,root,"Vinland",2,(x+200)/2-20,450),
 
               reaSelect,midSelect,sMin,retu});
       realmSelect.setItems(new Rec[]{
-             /// new RealmPicker(new Asgard(dicePack),powerMenu,root,(x-200)/2,275),
-             /// new RealmPicker(new Vanaheim(),powerMenu,root,(x-600)/2 +20,275),
-             /// new RealmPicker(new Alfheim(),powerMenu,root,(x+200)/2 -20,275),
+             /// new GamePicker(new Asgard(dicePack),powerMenu,root,(x-200)/2,275),
+             /// new GamePicker(new Vanaheim(),powerMenu,root,(x-600)/2 +20,275),
+             /// new GamePicker(new Alfheim(),powerMenu,root,(x+200)/2 -20,275),
 
-             /// new RealmPicker(new Niflheim(dicePack),powerMenu,root,(x-200)/2,450),
-             /// new RealmPicker(new Muspelheim(dicePack),powerMenu,root,(x-600)/2 + 20,450),
-             /// new RealmPicker(new Jotunheim(),powerMenu,root,(x+200)/2 - 20,450),
+             /// new GamePicker(new Niflheim(dicePack),powerMenu,root,(x-200)/2,450),
+             /// new GamePicker(new Muspelheim(dicePack),powerMenu,root,(x-600)/2 + 20,450),
+             /// new GamePicker(new Jotunheim(),powerMenu,root,(x+200)/2 - 20,450),
 
               reaSelect,midSelect,sMin,retu});
       Power[] powerItems = new Power[]{
