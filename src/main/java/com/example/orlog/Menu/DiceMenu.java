@@ -32,6 +32,7 @@ public class DiceMenu extends Menu{
     public void setDice(DicePack pack, Midgard realm){
         DiceVal[] vals = new DiceVal[]{null,null,null,null,null};
         for (int i = 0;i <5;i++){vals[i] = builders[i].getType();}
+
         pack.setDice(PLAYER1, realm,vals);
         pack.setDice(PLAYER2, realm,vals);
     }

@@ -11,25 +11,35 @@ public class Side extends ImageButton {
     private final DiceVal back;
     private final DiceVal symb;
     private final DiceVal border;
-    private final ImageView mg;
+    protected final ImageView mg;
+    private final String tintCol;
     public Side(String path, DiceVal back, DiceVal border, DiceVal symb, int sx, int sy, String tintCol ) {
         super(path, symb.name(), back.name()+"_Back", 0, 0, sx, sy,tintCol);
         this.back = back;
         this.symb = symb;
+        this.tintCol = tintCol;
         this.border = border;
         mg = get(absPath +path +border.name()+"_Front.png");
-        set(new ImageView[]{bg, mg, fg}, 0, 0, 96, 96, tintCol);
+        set(new ImageView[]{bg, fg, mg}, 0, 0, 96, 96, tintCol);
     }
 
     public String getString() { return ("(" +back.name() + ","+symb.name()+ ","+border.name()+")");
     }
+
+
+    public void tint(String col) {
+        tintImg(fg,Color.web(col));
+    }
+
     public void setClick(Dice d){
-        this.fg.setOnMouseClicked(mouseEvent ->  d.toggleChosen());
-        this.bg.setOnMouseClicked(mouseEvent ->  d.toggleChosen());
+        this.fg.setOnMouseClicked(mouseEvent -> d.toggleChosen());
+        this.bg.setOnMouseClicked(mouseEvent -> d.toggleChosen());
+        this.mg.setOnMouseClicked(mouseEvent ->  d.toggleChosen());
     }
     public void load(int x, int y, List<Node> group) {
-        super.load(group);
+        group.add(bg);
         group.add(mg);
+        group.add(fg);
         this.fg.setX(x);
         this.fg.setY(y);
         this.bg.setY(y);
@@ -39,12 +49,10 @@ public class Side extends ImageButton {
 
     }
     public void set(int s, int x, int y,String tint){
-        super.set(new ImageView[]{fg,mg,bg},x,y,s,s,tint);
+        super.set(new ImageView[]{mg,fg,bg},x,y,s,s,tint);
         if (tint == null){nulled();}
     }
-    public void tint(String col){
-        tintImg(fg, Color.web(col));
-    }
+
     @Override
     public void delete(List<Node> group) {
         super.delete(group);
@@ -71,5 +79,11 @@ public class Side extends ImageButton {
         mg.setOnMouseExited(mouseEvent -> {});
         bg.setOnMouseExited(mouseEvent -> {});
 
+    }
+
+    public MistSide mist(Dice d) {
+        MistSide m = new MistSide("Niflheim/",back,border,symb, (int) fg.getFitWidth(),(int) fg.getFitHeight(),tintCol);
+        m.setClick(d);
+        return m;
     }
 }

@@ -10,7 +10,7 @@ import java.util.Random;
 
 
 public class Dice {
-    private final Side[] sides;
+    private Side[] sides;
     private Side active;
     private final Random rand;
     private final DiceVal type;
@@ -109,4 +109,7 @@ public class Dice {
         active.load(x,y,root.getChildren());
     }
 
+    public void mistDice() {
+        for (int n = 0; n < sides.length; n++){sides[n] = sides[n].mist(this);}
+    }
 }

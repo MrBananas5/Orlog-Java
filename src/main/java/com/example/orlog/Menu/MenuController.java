@@ -5,6 +5,8 @@ import com.example.orlog.Buttons.*;
 import com.example.orlog.Game.*;
 import com.example.orlog.Powers.*;
 
+import com.example.orlog.Realms.Muspelheim;
+import com.example.orlog.Realms.Niflheim;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
@@ -121,8 +123,8 @@ public class MenuController {
               ///new GamePicker(powerMenu,root,"Jomsborg","#fceb35",2,(x+200)/2-20,275),
 
               new GamePicker(powerMenu,root,"Jorvik","#fceb35",1,(x-200)/2,450),
-              ///new MidgardPicker(powerMenu,root,"Grœnland",2,(x-600)/2+20,450),
-              ///new MidgardPicker(powerMenu,root,"Vinland",2,(x+200)/2-20,450),
+              new GamePicker(powerMenu,root,"Grœnland","#00FFFF",2,(x-600)/2+20,450),
+              new GamePicker(powerMenu,root,"Vinland","#00FF00",2,(x+200)/2-20,450),
 
               reaSelect,midSelect,sMin,retu});
       realmSelect.setItems(new Rec[]{
@@ -130,8 +132,8 @@ public class MenuController {
              /// new GamePicker(new Vanaheim(),powerMenu,root,(x-600)/2 +20,275),
              /// new GamePicker(new Alfheim(),powerMenu,root,(x+200)/2 -20,275),
 
-             /// new GamePicker(new Niflheim(dicePack),powerMenu,root,(x-200)/2,450),
-             /// new GamePicker(new Muspelheim(dicePack),powerMenu,root,(x-600)/2 + 20,450),
+              new GamePicker(new Niflheim(dicePack),powerMenu,root,(x-200)/2,450),
+              new GamePicker(new Muspelheim(dicePack),powerMenu,root,(x-600)/2 + 20,450),
              /// new GamePicker(new Jotunheim(),powerMenu,root,(x+200)/2 - 20,450),
 
               reaSelect,midSelect,sMin,retu});
@@ -159,6 +161,7 @@ public class MenuController {
               new DiceMaster("Midgard","ALL",276,328),
               new DiceRandom("Midgard",276,222),
       };
+
       diceMenu.setItems(diceItems);
       diceMenu.add(sMin);
       diceMenu.add(retu);

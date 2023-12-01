@@ -4,7 +4,7 @@ public class Alfheim extends Midgard {
 
 
     public Alfheim() {
-        super("Alfheim","FF0055");this.sname = "Alf";
+        super("Alfheim","FF0055","#000000");this.sname = "Alf";
     }
 
 }

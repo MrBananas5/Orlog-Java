@@ -35,14 +35,12 @@ public class DicePack {
     private void start(){
         maxPower =7;
         startHealth = 15;
-        startEnergy = 12;
+        startEnergy = 0;
         dice = new ArrayList<>();
         powers = new ArrayList<>();
         for (int i = 0;i<2;i++){
             powers.add(new ArrayList<>());
-            dice.add(new ArrayList<>());
-
-        }
+            dice.add(new ArrayList<>());}
     }
     private void removePower(Power power, Playnum p){
         power.getChild().delete(menucontroller.getGroup().getChildren());
@@ -76,12 +74,10 @@ public class DicePack {
             menucontroller.getPowerMenu().add(power.getChild());
             power.getChild().load(menucontroller.getGroup().getChildren());
             rePos(p);
-
         }
     }
     public void setDice(Playnum p,Midgard realm, DiceVal[] vals){
         DiceVal[] symbs = new DiceVal[]{AXE,WARRIOR,BOW,SHIELD,THIEF};
-
         for (int i = 0; i<5;i++){
             DiceVal[] sides = new DiceVal[]{null,null,null,null,null,null};
             for (int j =0; j<6;j++){sides[j] = symbs[(i+j)%5];}

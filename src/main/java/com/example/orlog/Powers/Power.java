@@ -10,6 +10,11 @@ import com.example.orlog.Realms.Midgard;
 public class Power extends ImageButton  {
     final private String name;
 
+    public boolean isActivated() {
+        return activated;
+    }
+
+    protected boolean activated = false;
     private ImageButton power;
     protected int cost;
 

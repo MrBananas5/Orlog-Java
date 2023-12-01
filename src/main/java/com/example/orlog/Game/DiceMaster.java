@@ -34,6 +34,7 @@ public class DiceMaster extends DiceBuilder{
         for (Rec rec: menucontroller.getDiceMenu().getItems()){
             if (rec.sameSide(p)){rec.setN(n);}
         }
+        tint(MenuController.tintCol);
     }
 
     public DiceMaster copy(){return new DiceMaster(realm, label.getText(), 900-x-125,y);}

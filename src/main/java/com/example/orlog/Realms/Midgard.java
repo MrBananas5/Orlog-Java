@@ -1,10 +1,13 @@
 package com.example.orlog.Realms;
 
+import com.example.orlog.Buttons.NullImage;
 import com.example.orlog.Game.Dice;
 
 import com.example.orlog.Game.Player;
+import com.example.orlog.Game.Playnum;
 import com.example.orlog.Powers.Power;
 import javafx.scene.Group;
+import javafx.scene.effect.Glow;
 
 
 import java.util.ArrayList;
@@ -19,19 +22,22 @@ public class Midgard {
     private final String tint;
     private final String path;
     private final Random rand;
+    private final String textCol;
     public Midgard(String name,String path,String tint){
         this.name = name;
         this.sname = name;
         this.path = path;
         this.tint = tint;
+        this.textCol = "#000000";
         rand = new Random();
     }
 
-    public Midgard(String name,String tint) {
+    public Midgard(String name,String tint,String textCol,int n) {
         this.name = name;
         this.sname = name;
-        this.path = name;
+        this.path = name+"/";
         this.tint = tint;
+        this.textCol = textCol;
         rand = new Random();
     }
 
@@ -60,6 +66,7 @@ public class Midgard {
     private boolean inBounds(int tx, int ty,int x1, int y1, int x2, int y2){
         return ((x1<tx && tx < x2 )&&(y1<ty && ty<y2));
     }
+    public void setUp(Player player){}
     private boolean overlap(int x1, int y1, int x2, int y2, int s){
         return( inBounds(x1,y1,x2,y2,x2+s,y2+s) ||
                 inBounds(x1+s,y1,x2,y2,x2+s,y2+s) ||
@@ -67,7 +74,7 @@ public class Midgard {
                 inBounds(x1+s,y1+s,x2,y2,x2+s,y2+s)
                 );
     }
-    private int[] dicePos(ArrayList<Dice> pdice, int y1,int y2){
+    protected int[] dicePos(ArrayList<Dice> pdice, int y1, int y2){
         int rx;int ry;
         boolean valid;
         while (true) {
@@ -82,7 +89,7 @@ public class Midgard {
 
         }
     }}
-    public void displayDice(Group root,ArrayList<Dice> pdice, int y1,int y2, int x3, int y3){
+    public void displayDice(Group root,ArrayList<Dice> pdice, int y1,int y2){
         for (Dice dice:pdice) {
             if (!dice.getChosen()) {
                 int[] pos = dicePos(pdice, y1, y2);
@@ -90,11 +97,11 @@ public class Midgard {
             }
         }
     }
-    public void hideDice(Group root,ArrayList<Dice> pdice){
+    public void hideDice(Group root,ArrayList<Dice> pdice, int x){
         int n = 0;
         for (Dice dice:pdice){
             dice.hide(root);
-            if (dice.getChosen()){dice.miniDisplay(root,48, (n++*50),(750-48)/2);}
+            if (dice.getChosen()){dice.miniDisplay(root,48, x+ (n++*49),(750-48)/2);}
         }
     }
     public void resolve(Player p1,Player p2,Group root){
@@ -122,4 +129,12 @@ public class Midgard {
 
     }
 
+    public void gameOver(Playnum p, Group root) {
+        NullImage winB = new NullImage(path,"Lose_"+ p.name(),0,0,900,750);
+        winB.getNode().setEffect(new Glow(10));
+
+        winB.load(root.getChildren());
+    }
+
+    public String getTextCol() {return textCol;}
 }

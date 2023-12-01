@@ -4,6 +4,8 @@ import com.example.orlog.Buttons.ImageButton;
 import com.example.orlog.Menu.MenuController;
 import javafx.scene.image.Image;
 
+
+
 public class DiceBuilder extends ImageButton {
     protected int n = 0;
     protected int p = 0;
@@ -24,6 +26,7 @@ public class DiceBuilder extends ImageButton {
     protected void onClick(){
         n = (n+1)%5;
         setImg();
+        tint(MenuController.tintCol);
     }
     public void setPlayer2(){p = 1;}
     private String getBack(){

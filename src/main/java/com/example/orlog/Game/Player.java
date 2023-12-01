@@ -19,19 +19,14 @@ public class Player {
         return favour;
     }
 
-    public void setFavour(int favour) {
-        this.favour = favour;
-    }
+    public void setFavour(int favour) {this.favour = favour;}
 
     public int getHealth() {
         return health;
     }
 
 
-    public void setHealth(int health) {
-        this.health = health;
-        System.out.println(this.health);
-    }
+    public void setHealth(int health) {this.health = health;}
 
     public ArrayList<Dice> getDice() {
         return dice;
@@ -50,7 +45,7 @@ public class Player {
     }
 
     public void incHealth(int n){
-        if( (health + n) > 0){
+        if( (health + n) >= 0){
             health +=n;
         }
     }

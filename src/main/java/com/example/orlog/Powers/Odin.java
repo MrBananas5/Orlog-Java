@@ -6,7 +6,7 @@ import com.example.orlog.Realms.Midgard;
 import static com.example.orlog.Game.DiceVal.ODIN;
 
 public class Odin extends Power{
-    boolean activated;
+
     public Odin(int x, int y, DicePack pack) {
         super("Odin",8,x,y,pack); activated = false;
     }

@@ -58,6 +58,18 @@ public class ImageButton extends Rec{
         Blend blush2 = new Blend(BlendMode.OVERLAY,image,blush);
         img.setEffect(blush2);
     }
+    protected void backTintImg(ImageView img, Color col){
+        ImageInput image = new ImageInput(img.getImage());
+        image.setX(img.getX());image.setY(img.getY());
+
+        ///ColorAdjust adjust = new ColorAdjust(col.getHue(),col.getSaturation(), col.getBrightness(), 0);
+
+        ColorInput adjust = new ColorInput(img.getX(), img.getY(),img.getFitWidth(),img.getFitHeight(),col);
+        Blend blush = new Blend(BlendMode.SRC_ATOP ,image,adjust);
+
+        Blend blush2 = new Blend(BlendMode.OVERLAY,blush,image);
+        img.setEffect(blush2);
+    }
 
 
     protected void set(ImageView[] imgs, int x, int y, int sx, int sy,String col){
