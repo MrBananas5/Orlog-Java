@@ -5,6 +5,7 @@ import com.example.orlog.Buttons.*;
 import com.example.orlog.Game.*;
 import com.example.orlog.Powers.*;
 
+import com.example.orlog.Realms.Alfheim;
 import com.example.orlog.Realms.Muspelheim;
 import com.example.orlog.Realms.Niflheim;
 import javafx.scene.Group;
@@ -58,7 +59,7 @@ public class MenuController {
               new Stop(0, Color.web("#3d1b08")),    //colors
               new Stop(1, Color.web("#58270c")))
       );
-      stage.getIcons().add(new Image("file:C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/Midgard/Icon.png"));
+      stage.getIcons().add(new Image("file:src/main/resources/com/example/orlog/Midgard/Icon.png"));
       stage.setScene(scene);
       stage.show();
 

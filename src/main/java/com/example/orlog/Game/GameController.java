@@ -36,7 +36,7 @@ public class GameController {
         this.scene = scene;
         stage.setTitle("Orlog - " + gamePack.getName());
         stage.getIcons().clear();
-        stage.getIcons().add(new Image("file:C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/" + gamePack.getIcon()));
+        stage.getIcons().add(new Image("file:src/main/resources/com/example/orlog/" + gamePack.getIcon()));
         new NullImage(gamePack.getPath(), gamePack.getName(), 0, 0, 900, 750).load(root.getChildren());
         scene.setRoot(root);
         scene.setOnKeyPressed((KeyEvent event) -> {

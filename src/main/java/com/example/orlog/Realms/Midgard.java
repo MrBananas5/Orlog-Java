@@ -107,28 +107,40 @@ public class Midgard {
     public void resolve(Player p1,Player p2,Group root){
         p1.incDmg((p1.getSymbs(AXE) - p2.getSymbs(WARRIOR)));
         p1.incDmg((p1.getSymbs(BOW)-p2.getSymbs(SHIELD)));
-        int f = p2.stealFavour(p1.getSymbs(THIEF));
-        p1.incFavour(f);
-        p1.incDmg(p1.getBorders(VIDAR));
-        p1.incHealth(p1.getBorders(FRIGG));
-        p2.incFavour(-p1.getBorders(LOKI));
-        p1.incFavour(p1.getBorders(GOLD));
-        for (Power power: p1.getPowers()){
-            if (power.isActive()){
-                if (p1.getFavour()>= power.getCost()) {
-                    power.doIt(p1, this);p1.incFavour(-power.getCost());}}
-            power.setActive(false);
-        }
+
+        doFavor(p1,p2);
+        doBorders(p1,p2);
+        doPowers(p1);
         p2.incHealth(-p1.getDmg());
+        endResolve(p1,root);
+
+    }
+    protected void endResolve(Player p1, Group root){
         for (Dice dice: p1.getDice()) {
             dice.setChosen(false);
             dice.dim();
             dice.hide(root);
         }
         p1.setDmg(0);
-
     }
-
+    protected void doPowers(Player p1){
+        for (Power power: p1.getPowers()){
+            if (power.isActive()){
+                if (p1.getFavour()>= power.getCost()) {
+                    power.doIt(p1, this);p1.incFavour(-power.getCost());}}
+            power.setActive(false);
+        }
+    }
+    protected void doFavor(Player p1, Player p2){
+        int f = p2.stealFavour(p1.getSymbs(THIEF));
+        p1.incFavour(f);
+    }
+    protected void doBorders(Player p1, Player p2){
+        p1.incDmg(p1.getBorders(VIDAR));
+        p1.incHealth(p1.getBorders(FRIGG));
+        p2.incFavour(-p1.getBorders(LOKI));
+        p1.incFavour(p1.getBorders(GOLD));
+    }
     public void gameOver(Playnum p, Group root) {
         NullImage winB = new NullImage(path,"Lose_"+ p.name(),0,0,900,750);
         winB.getNode().setEffect(new Glow(10));

@@ -15,8 +15,16 @@ public class Muspelheim extends Midgard {
     @Override
     public void resolve(Player p1, Player p2, Group root) {
         super.resolve(p1, p2, root);
-        for (Power power: p1.getPowers()){
-            if (power.getName().equals("Surtur")){if (!power.isActivated()){p1.incHealth(-1);}}
+        muspelFire(p1);
+    }
+    private void muspelFire(Player p){
+        boolean hasSurtur = false;
+        for (Power power: p.getPowers()){
+            if (power.getName().equals("Surtur")){if (!power.isActivated()){
+                p.incHealth(-1);
+                hasSurtur = true;
+            }}
         }
+        if (!hasSurtur){p.incHealth(-1);}
     }
 }

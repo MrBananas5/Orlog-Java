@@ -25,7 +25,7 @@ public class TextInfo extends Rec{
         label.setLayoutY(y);
         label.setPrefSize(sx,sy);
         label.setWrapText(true);
-        label.setFont(Font.loadFont("file:C:/Users/pek14/Documents/JORLOG/Orlog/src/main/resources/com/example/orlog/norse.bold.otf", sf));}
+        label.setFont(Font.loadFont("file:src/main/resources/com/example/orlog/norse.bold.otf", sf));}
 
     public void restore(){label.setText(sampleText);}
     public void setText(String s){
