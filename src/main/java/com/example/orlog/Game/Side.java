@@ -30,7 +30,12 @@ public class Side extends ImageButton {
     public void tint(String col) {
         tintImg(fg,Color.web(col));
     }
-
+    public void noClick(){
+        this.fg.setOnMouseClicked(mouseEvent -> {});
+        this.bg.setOnMouseClicked(mouseEvent -> {});
+        this.mg.setOnMouseClicked(mouseEvent -> {});
+        nulled();
+    }
     public void setClick(Dice d){
         this.fg.setOnMouseClicked(mouseEvent -> d.toggleChosen());
         this.bg.setOnMouseClicked(mouseEvent -> d.toggleChosen());

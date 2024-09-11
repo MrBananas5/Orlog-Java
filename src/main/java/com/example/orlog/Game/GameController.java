@@ -39,14 +39,21 @@ public class GameController {
         stage.getIcons().add(new Image("file:src/main/resources/com/example/orlog/" + gamePack.getIcon()));
         new NullImage(gamePack.getPath(), gamePack.getName(), 0, 0, 900, 750).load(root.getChildren());
         scene.setRoot(root);
-        scene.setOnKeyPressed((KeyEvent event) -> {
-            if (event.getCode() == KeyCode.SPACE){endTurn();}
-            event.consume();});
+        activateSpace();
 
         stats = new TextInfo[][]{null, null};
         begin(root, pack, 900, 750);
     }
-
+    public void activateSpace(){
+        scene.setOnKeyPressed((KeyEvent event) -> {
+            if (event.getCode() == KeyCode.SPACE){endTurn();}
+            event.consume();});
+    }
+    public void disableSpace(){
+        scene.setOnKeyPressed((KeyEvent event) -> {
+            if (event.getCode() == KeyCode.SPACE){}
+            event.consume();});
+    }
     private void begin(Group root, DicePack dicePack, int x, int y) {
         player = players[1].getNum();
         turnLabel = new TextInfo(player.name()+"'s Turn",x/2-36,y/2 - 30,300,32,48,gamePack.getTextCol());
@@ -57,7 +64,7 @@ public class GameController {
         coin.load(root.getChildren());
         for (Player p : players) {
             p.setFavour(dicePack.getStartFavour());
-            p.setHealth(dicePack.getStartHealth());
+            p.setFirstHealth(dicePack.getStartHealth());
             p.setDice(dicePack.getDice(p.getP()));
             p.setPowers(dicePack.getPowers(p.getP()));
             new NullImage(gamePack.getPath(), "Favour", x / 2 + 160, (y - 48) / 2 + 48 * p.getPN(), 48, 48).load(root.getChildren());
@@ -87,19 +94,29 @@ public class GameController {
         turnLabel.setText(player.name()+"'s turn");
         gamePack.rollDice(p.getDice());
         gamePack.displayDice(root,p.getDice(),p.getP().getInv()*495,p.getP().getInv()*495 + (750-495));
+        p.pickDice(this);
 
-
-        //pick dice/powers
+        //pick dice/powers (Handled by the dice)
     }
+    public Player getPlayer1() {return players[0];}
     private void endPlayerTurn(Player p){
         gamePack.hideDice(root,p.getDice(),p.getP().getNumber()*656);
         boolean over = false;
         if ((turnN++) == 5){turnN= 0;over = resolve();}
         else{player = players[p.getP().getInv()].getP();}
         rollLabel.setText("ROLL: " +(turnN/2 +1));
-        if (!over){turn(players[player.getNumber()]);}
+        if (!over){
+            boolean allPicked = true;//if the player has already picked all their dice, it skips their turn anyway
+            for (Dice d:players[player.getNumber()].getDice())
+                {if (!d.getChosen()){allPicked = false;}}
+            turn(players[player.getNumber()]);
+            //if(allPicked){endTurn();}
+        }
     }
-    private void endTurn(){endPlayerTurn(players[player.getNumber()]);
+    public void endTurn(){
+        if ((turnN == 4) || (turnN ==5)){for (Dice d:players[player.getNumber()].getDice()){
+        d.setChosen(true);}}
+        endPlayerTurn(players[player.getNumber()]);
     }
     private void playerResolve(Player p){
         gamePack.resolve(p,players[p.getP().getInv()],root);
@@ -121,6 +138,10 @@ public class GameController {
     private void gameOver(){
         scene.setOnKeyPressed((KeyEvent event) -> {});
     }
+
+    public int getTurn() {return turnN;
+    }
+
 
 }
 

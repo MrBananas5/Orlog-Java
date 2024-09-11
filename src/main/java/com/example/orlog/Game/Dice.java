@@ -56,7 +56,7 @@ public class Dice {
             active.set(96,0,0,tint);
         }
     }
-
+    public void noClick(){for (Side side: sides){side.noClick();}}
     public void toggleChosen() {
         chosen = !chosen;
     if (chosen){active.highlight();
@@ -94,7 +94,10 @@ public class Dice {
     }
 
     public DiceVal getBorder() {
-        return active.getBorder();
+        if (this.active != null) {
+            return active.getBorder();
+        }
+        return null;
     }
 
     public void dim() {

@@ -5,7 +5,6 @@ import com.example.orlog.Buttons.*;
 import com.example.orlog.Game.*;
 import com.example.orlog.Powers.*;
 
-import com.example.orlog.Realms.Alfheim;
 import com.example.orlog.Realms.Muspelheim;
 import com.example.orlog.Realms.Niflheim;
 import javafx.scene.Group;
@@ -168,12 +167,24 @@ public class MenuController {
       diceMenu.add(retu);
 
       aISelect.setItems(new Rec[]{
-              new AIButton(new AIPlayer(),envSelect,root,"Knud","TL",(x-445)/2 ,y-400),
-              new AIButton(new AIPlayer(),envSelect,root,"Yrsa","TR",(x-5)/2,y-400),
-              new AIButton(new AIPlayer(),envSelect,root,"Bjorn","M",(x-445)/2,y-280),
-              new AIButton(new AIPlayer(),envSelect,root,"Liv","M",(x-5)/2,y-280),
-              new AIButton(new AIPlayer(),envSelect,root,"Frode","BL",(x-445)/2,y-160),
-              new AIButton(new AIPlayer(),envSelect,root,"Ragnar","BR",(x-5)/2,y-160),
+              //this is old code for the bots in the python game. idk what some of these words mean (:
+              //GOLD, THIEF, WARRIOR, BOW, SHIELD, AXE, GREED, OPPER, SAVAGE,DEFEN,THOR,FREYJA,ODIN,LOKI,ADAPTING
+      //        bot("Frode",50,50,20,20,20,20,40,5,1,5,33,33,50,25,70,["ODIN","FREYJA","THOR","LOKI","VIDAR","FRIGG"],dice2)#Mana
+      //bot("Bjorn",40,20,15,60,15,60,5,10,3,5,75,33,11,5,20,["THOR","VIDAR","ODIN","FREYJA","FRIGG","LOKI"],dice2)#offensive
+      //bot("Liv",35,20,60,15,60,15,10,3,2,15,33,75,11,5,90,["FREYJA","FRIGG","ODIN","VIDAR","THOR","LOKI"],dice2)#defensive
+      //bot("Yrsa",0,0,0,0,0,0,0,0,0,0,75,33,20,10,50,random.shuffle(["ODIN","FREYJA","THOR","LOKI","VIDAR","FRIGG"]),dice2)#unpredictable
+      //bot("Knud",100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,["ODIN","FREYJA","THOR","LOKI","VIDAR","FRIGG"],dice2)#easy
+              //KNUD - Picks ALL dice immediately
+              new AIButton(new CPUPlayer(100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100),envSelect,root,"Knud","TL",(x-445)/2 ,y-400),
+              //Yrsa - Almost never picks dice
+              new AIButton(new CPUPlayer(0,0,0,0,0,0,0,0,0,20,20,20,20,20,20,20),envSelect,root,"Yrsa","TR",(x-5)/2,y-400),
+              //Bjorn - Offensive setup
+              new AIButton(new CPUPlayer(60,15,40,20,45,3,10,1,5,75,33,11,5,5,5,25),envSelect,root,"Bjorn","M",(x-445)/2,y-280),
+              //Liv
+              //new AIButton(new AIPlayer(),envSelect,root,"Liv","M",(x-5)/2,y-280),
+              //Frode
+              //new AIButton(new AIPlayer(),envSelect,root,"Frode","BL",(x-445)/2,y-160),
+              //new AIButton(new AIPlayer(),envSelect,root,"Ragnar","BR",(x-5)/2,y-160),
 
               home,sMin,retu,logo});
       settings.setItems(new Rec[]{home,sMin,retu,logo});

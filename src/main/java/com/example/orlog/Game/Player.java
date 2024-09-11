@@ -4,9 +4,9 @@ import com.example.orlog.Powers.Power;
 import java.util.ArrayList;
 import java.util.Random;
 public class Player {
-    private int favour; private int health;private int dmg;
-
-    private ArrayList<Dice> dice;  private ArrayList<Power> powers;
+    protected int favour; protected int health;private int dmg;
+    protected int sHP;
+    protected ArrayList<Dice> dice;  protected ArrayList<Power> powers;
     private final Playnum player;
     public Player(Playnum p){
         player = p;
@@ -55,6 +55,7 @@ public class Player {
             return;
         }favour = 0;
     }
+    public void pickDice(GameController gameController){}//handled by the events assigned by the dice
     public int getPN(){return (-2*player.getNumber())+1;}
 
     public void incDmg(int d) {
@@ -71,6 +72,11 @@ public class Player {
         for (Dice d: dice) {if (d.getSymb()==v){n++;}}
         return n;
     }
+    public int getChosenSymbs(DiceVal v) {
+        int n = 0;
+        for (Dice d: dice) {if ((d.getBorder()==v || d.getSymb()==v) &&d.getChosen()){n++;}}
+        return n;
+    }
 
     public int stealFavour(int val) {
         if (val > favour){val = favour;}
@@ -83,4 +89,9 @@ public class Player {
     }
 
     public void setDmg(int n) { dmg = n;}
+
+    public void setFirstHealth(int startHealth) {
+        sHP = startHealth;
+        setHealth(startHealth);
+    }
 }

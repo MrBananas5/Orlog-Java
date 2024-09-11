@@ -53,7 +53,7 @@ public class Power extends ImageButton  {
         fg.setOnMouseExited(mouseEvent -> {});
         bg.setOnMouseExited(mouseEvent -> {});
     }
-    private void activate(){
+    public void activate(){
         active = !active;
     if (active){power.getNode().setOnMouseExited(mouseEvent -> {});}
     else{power.getNode().setOnMouseExited(mouseEvent -> power.untint());}
