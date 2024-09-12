@@ -65,6 +65,11 @@ public class Side extends ImageButton {
     }
     public DiceVal getSymb(){return symb;}
 
+    public void prepareTint(){
+        fg.setOnMouseEntered(mouseEvent -> {tint(tintCol);});
+        mg.setOnMouseEntered(mouseEvent -> {tint(tintCol);});
+        bg.setOnMouseEntered(mouseEvent -> {tint(tintCol);});
+    }
 
     public DiceVal getBorder() {return border;}
 

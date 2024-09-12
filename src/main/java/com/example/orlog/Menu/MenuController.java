@@ -79,7 +79,6 @@ public class MenuController {
       Menu realmSelect = new Menu("Select a location!");
       diceMenu = new DiceMenu("Customise dice");
       powerMenu = new PowerMenu("Choose your powers!");
-
       MinButton home = new MinButton(mainMenu,root,"Symb_home",10,y-135);
       MinButton sMin = new MinButton(settings,root,"Symb_settings",x-135,10);
       ReturnButton retu = new ReturnButton(root,x-135,y-135);
@@ -175,15 +174,15 @@ public class MenuController {
       //bot("Yrsa",0,0,0,0,0,0,0,0,0,0,75,33,20,10,50,random.shuffle(["ODIN","FREYJA","THOR","LOKI","VIDAR","FRIGG"]),dice2)#unpredictable
       //bot("Knud",100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,["ODIN","FREYJA","THOR","LOKI","VIDAR","FRIGG"],dice2)#easy
               //KNUD - Picks ALL dice immediately
-              new AIButton(new CPUPlayer(100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100),envSelect,root,"Knud","TL",(x-445)/2 ,y-400),
+              new CPUButton(new CPUPlayer(100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100),envSelect,root,"Knud","TL",(x-445)/2 ,y-400),
               //Yrsa - Almost never picks dice
-              new AIButton(new CPUPlayer(0,0,0,0,0,0,0,0,0,20,20,20,20,20,20,20),envSelect,root,"Yrsa","TR",(x-5)/2,y-400),
+              new CPUButton(new CPUPlayer(0,0,0,0,0,0,0,0,0,20,20,20,20,20,20,20),envSelect,root,"Yrsa","TR",(x-5)/2,y-400),
               //Bjorn - Offensive setup
-              new AIButton(new CPUPlayer(60,15,40,20,45,3,10,1,5,75,33,11,5,5,5,25),envSelect,root,"Bjorn","M",(x-445)/2,y-280),
+              new CPUButton(new CPUPlayer(60,15,40,20,45,3,10,1,5,75,33,15,10,5,5,25),envSelect,root,"Bjorn","M",(x-445)/2,y-280),
               //Liv
-              //new AIButton(new AIPlayer(),envSelect,root,"Liv","M",(x-5)/2,y-280),
+              new CPUButton(new CPUPlayer(15,60,35,20,40,2,2,3,15,33,75,15,5,5,10,35),envSelect,root,"Liv","M",(x-5)/2,y-280),
               //Frode
-              //new AIButton(new AIPlayer(),envSelect,root,"Frode","BL",(x-445)/2,y-160),
+              new CPUButton(new CPUPlayer(20,20,50,50,30,1,5,1,5,33,33,50,15,15,15,70),envSelect,root,"Frode","BL",(x-445)/2,y-160),
               //new AIButton(new AIPlayer(),envSelect,root,"Ragnar","BR",(x-5)/2,y-160),
 
               home,sMin,retu,logo});

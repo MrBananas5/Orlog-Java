@@ -1,5 +1,6 @@
 package com.example.orlog.Game;
 
+import com.example.orlog.Buttons.NullImage;
 import com.example.orlog.Powers.Power;
 import javafx.application.Platform;
 
@@ -29,9 +30,10 @@ public class CPUPlayer extends Player{
         this.odinw = odin;
         this.vidarw = vidar;
         this.lokiw = loki;
-        rand = new Random();
 
-    }
+        rand = new Random();
+         }
+    private static NullImage thinking;
     private Random rand;
     //uses sum weighting as a probability of making choices
     //there is a lot of factors lmao
@@ -65,6 +67,8 @@ public class CPUPlayer extends Player{
     }
     @Override
     public void pickDice(GameController gameController){
+
+        gameController.think();
         Player p1 = gameController.getPlayer1();
         pickTheDice(gameController,p1);
         pickPowers(gameController,p1);
@@ -72,8 +76,8 @@ public class CPUPlayer extends Player{
         clock.getTimer().schedule(new TimerTask() {public void run() {
             Platform.runLater(() ->
             {System.out.printf("AAAAA\n");
-                ;
                 endTurn(gameController);
+                gameController.think();
             });
         }},3000l); //wait about 3 seconds for dramatic effect, then end turn
 

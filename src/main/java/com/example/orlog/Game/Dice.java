@@ -2,11 +2,14 @@ package com.example.orlog.Game;
 
 import com.example.orlog.Realms.Midgard;
 
+import javafx.application.Platform;
 import javafx.scene.Group;
 
 
 import java.util.Random;
+import java.util.TimerTask;
 
+import static com.example.orlog.Game.Clock.clock;
 
 
 public class Dice {
@@ -44,11 +47,39 @@ public class Dice {
     public void roll() {
         active = sides[rand.nextInt(6)];
     }
+    public void animate(Group root){
+        int displays = rand.nextInt(1,10);
+        int each = rand.nextInt(2500,3000)/displays;
+        animateSide(displays, root,each);}
+    private void animateSide(int n,Group root,long delay) {
+        //display random sides
+        //remove clickability for each side, then restore
+        //then show real side
+        if (n== 0){active.load(x,y,root.getChildren());}
+        if (n > 0) {
+            Side sideDisplay;
+            sideDisplay = sides[rand.nextInt(6)];
+            sideDisplay.noClick();
+            sideDisplay.load(x,y,root.getChildren());
 
+            Dice me = this;
+            clock.getTimer().schedule(new TimerTask() {
+                public void run() {
+                    Platform.runLater(() ->
+                    {
+                        sideDisplay.prepareTint();
+                        sideDisplay.delete(root.getChildren());
+                        sideDisplay.setClick(me);
+                        animateSide(n - 1,root,delay);
+                    });
+                }
+            }, delay); //wait about 3 seconds for dramatic effect, then end turn
+        }
+    }
     public void display(Group root, int x, int y) {
         this.x = x;
         this.y = y;
-        active.load(x,y,root.getChildren());
+        animate(root);
     }
     public void hide(Group root){
         if (active != null) {

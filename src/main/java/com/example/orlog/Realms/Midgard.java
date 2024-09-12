@@ -111,7 +111,7 @@ public class Midgard {
         doFavor(p1,p2);
         doBorders(p1,p2);
         doPowers(p1);
-        p2.incHealth(-p1.getDmg());
+        p2.decHealth(p1.getDmg());
         endResolve(p1,root);
 
     }

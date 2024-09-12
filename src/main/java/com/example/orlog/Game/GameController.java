@@ -6,6 +6,7 @@ import com.example.orlog.Buttons.TextInfo;
 
 import com.example.orlog.Realms.Midgard;
 
+import javafx.application.Platform;
 import javafx.scene.Group;
 
 import javafx.scene.Scene;
@@ -17,6 +18,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.util.Objects;
+import java.util.TimerTask;
+
+import static com.example.orlog.Game.Clock.clock;
 
 public class GameController {
     private final Midgard gamePack;
@@ -29,6 +33,7 @@ public class GameController {
     private TextInfo rollLabel;
     private NullImage coin;
     private final Scene scene;
+    private NullImage thinking;
     public GameController(Midgard gamePack, Player p2, DicePack pack, Stage stage, Scene scene) {
         this.gamePack = gamePack;
         players = new Player[]{new Player(Playnum.PLAYER1), p2};
@@ -40,7 +45,6 @@ public class GameController {
         new NullImage(gamePack.getPath(), gamePack.getName(), 0, 0, 900, 750).load(root.getChildren());
         scene.setRoot(root);
         activateSpace();
-
         stats = new TextInfo[][]{null, null};
         begin(root, pack, 900, 750);
     }
@@ -62,6 +66,8 @@ public class GameController {
         rollLabel.load(root.getChildren());
         coin = new NullImage(gamePack.getPath(), "Coin_"+player.name(),x/2-106,y/2-32,64,64);
         coin.load(root.getChildren());
+        thinking = new NullImage("","dayCycle",x / 2 +48,(y-48) / 2 - 52,48,48,".gif");
+
         for (Player p : players) {
             p.setFavour(dicePack.getStartFavour());
             p.setFirstHealth(dicePack.getStartHealth());
@@ -93,9 +99,18 @@ public class GameController {
         //roll Dice
         turnLabel.setText(player.name()+"'s turn");
         gamePack.rollDice(p.getDice());
+        disableSpace();
+        GameController g= this;
         gamePack.displayDice(root,p.getDice(),p.getP().getInv()*495,p.getP().getInv()*495 + (750-495));
-        p.pickDice(this);
+        thinking.toggle(root.getChildren());
 
+        clock.getTimer().schedule(new TimerTask() {public void run() {
+            Platform.runLater(() ->
+            {activateSpace();
+                p.pickDice(g);
+                thinking.toggle(root.getChildren());
+            }
+            );}},3000l);
         //pick dice/powers (Handled by the dice)
     }
     public Player getPlayer1() {return players[0];}
@@ -109,8 +124,9 @@ public class GameController {
             boolean allPicked = true;//if the player has already picked all their dice, it skips their turn anyway
             for (Dice d:players[player.getNumber()].getDice())
                 {if (!d.getChosen()){allPicked = false;}}
-            turn(players[player.getNumber()]);
-            //if(allPicked){endTurn();}
+
+            if(!allPicked){turn(players[player.getNumber()]);}
+            else{endTurn();}
         }
     }
     public void endTurn(){
@@ -143,5 +159,9 @@ public class GameController {
     }
 
 
+
+    public void think() {
+        thinking.toggle(root.getChildren());
+    }
 }
 

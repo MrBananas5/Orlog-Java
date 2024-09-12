@@ -1,5 +1,6 @@
 package com.example.orlog.Game;
 import com.example.orlog.Powers.Power;
+import javafx.scene.Group;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -49,6 +50,9 @@ public class Player {
             health +=n;
         }
     }
+    public void decHealth(int n){
+        health -=n;
+    }
     public void incFavour(int n){
         if( (favour + n) > 0){
             favour +=n;
@@ -93,5 +97,9 @@ public class Player {
     public void setFirstHealth(int startHealth) {
         sHP = startHealth;
         setHealth(startHealth);
+    }
+
+    public void rollAnimate(Group root) {
+        for (Dice d: dice) {d.animate(root);}
     }
 }
